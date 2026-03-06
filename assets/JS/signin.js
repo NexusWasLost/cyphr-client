@@ -1,5 +1,14 @@
-import { loginWithGithub } from "./script.js";
+import { getUser, loginWithGithub } from "./script.js";
 
-document.querySelector("#githubSignIn").addEventListener("click", function () {
+window.addEventListener("load", async function() {
+    const user = await getUser();
+
+    if (user) {
+        // Already logged in → go to dashboard
+        window.location.href = "/dashboard.html";
+    }
+});
+
+document.querySelector("#githubSignIn").addEventListener("click", function() {
     loginWithGithub();
 });

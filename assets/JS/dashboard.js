@@ -1,9 +1,10 @@
 import { getSession, logoutUser } from "./script.js";
 
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", init);
+
+async function init() {
     const session = await getSession();
 
-    // 1. Session Guard
     if (!session) {
         window.location.href = "/login.html";
         return;
@@ -11,177 +12,250 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const token = session.access_token;
 
-    // --- Selectors ---
     const addKeyModal = document.querySelector("#addKeyModal");
     const openModalBtn = document.querySelector("#openAddModal");
     const logoutBtn = document.querySelector(".navbar-end .button.is-dark");
     const saveKeyBtn = document.querySelector("#saveKeyBtn");
     const keysTableBody = document.querySelector("#keysTableBody");
 
-    const closeModalElements = document.querySelectorAll("#addKeyModal .modal-background, #addKeyModal .delete, #addKeyModal .modal-card-foot .is-light");
+    const closeModalElements = document.querySelectorAll(
+        "#addKeyModal .modal-background, #addKeyModal .delete, #addKeyModal .modal-card-foot .is-light"
+    );
 
-    // --- Helper: Create Row Element ---
-    // Generates the <tr> structure for a single key entry
-    function createKeyRow(data) {
-        const row = document.createElement("tr");
-        row.setAttribute("data-id", data.key_id);
+    await fetchKeys(token, keysTableBody);
 
-        row.innerHTML = `
-            <td class="is-vcentered">${data.service_name}</td>
-            <td class="is-vcentered"><code>...${data.key_hint}</code></td>
-            <td class="has-text-right">
-                <div class="buttons is-right">
-                    <button class="button is-small btn-copy">Copy</button>
-                    <button class="button is-small btn-edit">Edit</button>
-                    <button class="button is-small btn-delete">Delete</button>
-                </div>
+    setupModal(openModalBtn, addKeyModal, closeModalElements);
+    setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token);
+    setupCopyAndDeleteHandler(keysTableBody, token);
+    setupLogout(logoutBtn);
+}
+
+function createKeyRow(data) {
+    const row = document.createElement("tr");
+
+    row.setAttribute("data-id", data.key_id);
+
+    row.innerHTML = `
+        <td class="is-vcentered">${data.service_name}</td>
+        <td class="is-vcentered"><code>...${data.key_hint}</code></td>
+        <td class="has-text-right">
+            <div class="buttons is-right">
+                <button class="button is-small btn-copy">Copy</button>
+                <button class="button is-small btn-edit">Edit</button>
+                <button class="button is-small btn-delete">Delete</button>
+            </div>
+        </td>
+    `;
+
+    return row;
+}
+
+function checkEmptyState(keysTableBody) {
+    if (!keysTableBody) return;
+
+    if (keysTableBody.children.length !== 0) return;
+
+    keysTableBody.innerHTML = `
+        <tr>
+            <td colspan="3" class="has-text-centered has-text-grey py-6">
+                No keys added yet. Click "Add Key" to start.
             </td>
-        `;
-        return row;
-    }
+        </tr>`;
+}
 
-    // --- Helper: Check for empty state ---
-    // Shows a placeholder if the table has no rows
-    function checkEmptyState() {
-        if (!keysTableBody) {
+async function fetchKeys(token, keysTableBody) {
+    try {
+        const response = await fetch("http://127.0.0.1:8787/api/list-keys", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Failed to fetch keys");
+            checkEmptyState(keysTableBody);
             return;
         }
 
-        if (keysTableBody.children.length === 0) {
-            keysTableBody.innerHTML = `
-                <tr>
-                    <td colspan="3" class="has-text-centered has-text-grey py-6">
-                        No keys added yet. Click "Add Key" to start.
-                    </td>
-                </tr>`;
+        const result = await response.json();
+        const keys = result.data;
+
+        if (!keys || keys.length === 0) {
+            checkEmptyState(keysTableBody);
+            return;
+        }
+
+        keysTableBody.innerHTML = "";
+
+        for (let x = 0; x < keys.length; x++) {
+            const row = createKeyRow(keys[x]);
+            keysTableBody.appendChild(row);
         }
     }
-
-    // --- API: Fetch and List Keys ---
-    // Runs on page load to populate the table from the backend
-    async function fetchKeys() {
-        try {
-            const response = await fetch("http://127.0.0.1:8787/api/list-keys", {
-                method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + token
-                }
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                const keys = result.data; // Expecting an array of keys
-
-                if (keys && keys.length > 0) {
-                    keysTableBody.innerHTML = ""; // Clear placeholder
-
-                    for (let i = 0; i < keys.length; i++) {
-                        const row = createKeyRow(keys[i]);
-                        keysTableBody.appendChild(row);
-                    }
-                }
-
-                checkEmptyState();
-            }
-            else {
-                console.error("Failed to fetch keys: Server error");
-                checkEmptyState();
-            }
-        }
-        catch (error) {
-            console.error("API Request failed (list-keys):", error);
-            checkEmptyState();
-        }
+    catch (error) {
+        console.error("API Request failed:", error);
+        checkEmptyState(keysTableBody);
     }
+}
 
-    // Initial load call
-    fetchKeys();
-
-    // --- Modal Visibility ---
-    // Handles opening and closing the "Add Key" modal
+function setupModal(openModalBtn, addKeyModal, closeModalElements) {
     if (openModalBtn) {
         openModalBtn.addEventListener("click", function () {
             addKeyModal.classList.add("is-active");
         });
     }
 
-    for (let i = 0; i < closeModalElements.length; i++) {
-        const el = closeModalElements[i];
-        el.addEventListener("click", function (e) {
+    for (let x = 0; x < closeModalElements.length; x++) {
+        closeModalElements[x].addEventListener("click", function (e) {
             e.preventDefault();
             addKeyModal.classList.remove("is-active");
         });
     }
+}
 
-    // --- Save Key (POST Request with token) ---
-    // Handles form submission and dynamic row injection on success
-    if (saveKeyBtn) {
-        saveKeyBtn.addEventListener("click", async function (e) {
-            e.preventDefault();
+function setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token) {
+    if (!saveKeyBtn) return;
 
-            const serviceName = document.querySelector("#serviceName").value;
-            const apiKeyName = document.querySelector("#keyLabel").value;
-            const apiKeyValue = document.querySelector("#keyValue").value;
+    saveKeyBtn.addEventListener("click", async function (e) {
+        e.preventDefault();
 
-            if (!serviceName || !apiKeyName || !apiKeyValue) {
-                alert("Please fill in all required fields.");
+        const serviceName = document.querySelector("#serviceName").value;
+        const apiKeyName = document.querySelector("#keyLabel").value;
+        const apiKeyValue = document.querySelector("#keyValue").value;
+
+        if (!serviceName || !apiKeyName || !apiKeyValue) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://127.0.0.1:8787/api/add-key", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+                body: JSON.stringify({
+                    serviceName,
+                    apiKeyName,
+                    apiKeyValue
+                })
+            });
+
+            if (!response.ok) {
+                alert("Server refused request");
                 return;
             }
 
+            const result = await response.json();
+
+            const placeholder = keysTableBody.querySelector("td[colspan]");
+            if (placeholder) keysTableBody.innerHTML = "";
+
+            const row = createKeyRow(result.data);
+            keysTableBody.appendChild(row);
+
+            document.querySelector("#serviceName").value = "";
+            document.querySelector("#keyLabel").value = "";
+            document.querySelector("#keyValue").value = "";
+
+            addKeyModal.classList.remove("is-active");
+        }
+        catch (error) {
+            console.error("API Request failed:", error);
+            alert("Network error");
+        }
+    });
+}
+
+// --- API: Delete Key (Standalone) ---
+async function deleteKey(keyId, token) {
+    try {
+        const response = await fetch(`http://127.0.0.1:8787/api/del-key/${keyId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!response.ok) {
+            alert("Failed to delete the key.");
+            return false;
+        }
+
+        return true;
+    }
+    catch (error) {
+        console.error("Delete request failed:", error);
+        alert("Network error while trying to delete key.");
+        return false;
+    }
+}
+
+// --- Event Delegation: Handle Copy & Delete ---
+function setupCopyAndDeleteHandler(keysTableBody, token) {
+    if (!keysTableBody) return;
+
+    keysTableBody.addEventListener("click", async function (e) {
+        const row = e.target.closest("tr");
+        if (!row) return;
+        const keyId = row.getAttribute("data-id");
+
+        // --- Copy Key ---
+        if (e.target.classList.contains("btn-copy")) {
+            const button = e.target;
             try {
-                const response = await fetch("http://127.0.0.1:8787/api/add-key", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer " + token
-                    },
-                    body: JSON.stringify({
-                        serviceName: serviceName,
-                        apiKeyName: apiKeyName,
-                        apiKeyValue: apiKeyValue
-                    })
+                const response = await fetch(`http://127.0.0.1:8787/api/get-key/${keyId}`, {
+                    method: "GET",
+                    headers: { "Authorization": "Bearer " + token }
                 });
 
-                if (response.ok) {
-                    const result = await response.json();
-
-                    // Remove "No keys" placeholder
-                    const placeholder = keysTableBody.querySelector("td[colspan]");
-                    if (placeholder) {
-                        keysTableBody.innerHTML = "";
-                    }
-
-                    // Inject New Row
-                    const row = createKeyRow(result.data);
-                    keysTableBody.appendChild(row);
-
-                    // Reset and Close
-                    document.querySelector("#serviceName").value = "";
-                    document.querySelector("#keyLabel").value = "";
-                    document.querySelector("#keyValue").value = "";
-                    addKeyModal.classList.remove("is-active");
+                if (!response.ok) {
+                    alert("Failed to fetch the key.");
+                    return;
                 }
-                else {
-                    alert("Error: Server refused the request. Check your token or backend logs.");
-                }
+
+                const result = await response.json();
+                await navigator.clipboard.writeText(result.key);
+
+                const originalText = button.innerText;
+                button.innerText = "Copied!";
+                button.classList.add("is-success");
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.classList.remove("is-success");
+                }, 2000);
             }
             catch (error) {
-                console.error("API Request failed:", error);
-                alert("Network error. Is the worker running?");
+                console.error("Copy request failed:", error);
+                alert("Network error while copying key.");
             }
-        });
-    }
+        }
 
-    // --- Logout ---
-    // Handles Supabase session termination
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", async function () {
-            try {
-                await logoutUser();
+        // --- Delete Key ---
+        if (e.target.classList.contains("btn-delete")) {
+            const confirmed = confirm("Are you sure you want to delete this key?");
+            if (!confirmed) return;
+
+            const success = await deleteKey(keyId, token);
+            if (success) {
+                row.remove();
+                checkEmptyState(keysTableBody);
             }
-            catch (error) {
-                console.error("Logout failed", error);
-            }
-        });
-    }
-});
+        }
+    });
+}
+
+function setupLogout(logoutBtn) {
+    if (!logoutBtn) return;
+
+    logoutBtn.addEventListener("click", async function () {
+        try {
+            await logoutUser();
+        }
+        catch (error) {
+            console.error("Logout failed", error);
+        }
+    });
+}

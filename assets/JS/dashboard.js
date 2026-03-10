@@ -1,180 +1,187 @@
 import { getSession, logoutUser } from "./script.js";
 
-// ==========================================
-// 1. DASHBOARD INITIALIZATION
-// ==========================================
-const mainContainer = document.querySelector("main .container");
-
-mainContainer.innerHTML = `
-    <div class="dashboard-header">
-        <h1>Secrets Vault</h1>
-        <button class="addserv">+ Add Key</button>
-    </div>
-    <div class="keys-table">
-        <div class="table-head">
-            <div class="col-service">Service</div>
-            <div class="col-hint">Identifier</div>
-            <div class="col-actions">Actions</div>
-        </div>
-        <div id="keysBody">
-            <div id="statusMessage" style="padding: 2rem; text-align: center; color: var(--text-dim);">Scanning vault...</div>
-        </div>
-    </div>
-`;
-
-const keysBody = document.querySelector("#keysBody");
-
-// ==========================================
-// 2. RENDER LOGIC
-// ==========================================
-function renderKeyRow(keyData) {
-    const row = document.createElement("div");
-    row.classList.add("key-row");
-
-    // key_id used here for targeted actions
-    row.setAttribute("data-target", keyData.key_id);
-
-    row.innerHTML = `
-        <div class="col-service">
-            <span class="service-main">${keyData.service_name}</span>
-            <span class="service-sub">${keyData.key_name}</span>
-        </div>
-        <div class="col-hint">•••• ${keyData.key_hint}</div>
-        <div class="col-actions">
-            <button class="action-btn copy-btn">Copy</button>
-            <button class="action-btn update-btn">Edit</button>
-            <button class="action-btn delete-btn">Delete</button>
-        </div>
-    `;
-
-    // Copy Action
-    row.querySelector(".copy-btn").addEventListener("click", function() {
-        const id = row.getAttribute("data-target");
-        console.log("Requesting plain-text for key_id:", id);
-        alert("Copying " + keyData.service_name + "...");
-    });
-
-    // Delete Action
-    row.querySelector(".delete-btn").addEventListener("click", function() {
-        const id = row.getAttribute("data-target");
-        if(confirm("Permanently delete " + keyData.service_name + "?")) {
-            console.log("Deleting key_id:", id);
-            row.remove();
-        }
-    });
-
-    keysBody.prepend(row);
-}
-
-// ==========================================
-// 3. LOAD FUNCTION (Fetches all data)
-// ==========================================
-async function fetchAllKeys() {
+document.addEventListener("DOMContentLoaded", async function () {
     const session = await getSession();
-    if (!session) return;
 
-    try {
-        const response = await fetch("http://127.0.0.1:8787/api/list-keys", {
-            method: "GET",
-            headers: {
-                "Authorization": "Bearer " + session.access_token
-            }
-        });
-
-        const result = await response.json();
-
-        if (response.status === 200) {
-            keysBody.innerHTML = ""; // Clear loader
-            for (let i = 0; i < result.data.length; i++) {
-                renderKeyRow(result.data[i]);
-            }
-        } else if (response.status === 404) {
-            // Your backend throws 404 when data.length === 0
-            keysBody.innerHTML = `<div style="padding: 2rem; text-align: center; color: var(--text-dim);">Your vault is currently empty.</div>`;
-        } else {
-            keysBody.innerHTML = `<div style="padding: 2rem; text-align: center; color: #ef4444;">Error: ${result.message}</div>`;
-        }
-    } catch (error) {
-        console.error("Fetch error:", error);
-        keysBody.innerHTML = `<div style="padding: 2rem; text-align: center; color: #ef4444;">Could not connect to backend.</div>`;
-    }
-}
-
-// ==========================================
-// 4. CORE EVENTS
-// ==========================================
-window.addEventListener("load", async function() {
-    const session = await getSession();
+    // 1. Session Guard
     if (!session) {
         window.location.href = "/login.html";
         return;
     }
 
-    const emailSpan = document.querySelector("#userEmail");
-    if (emailSpan) emailSpan.textContent = session.user.email;
+    const token = session.access_token;
 
-    // Execute the load function
-    fetchAllKeys();
-});
+    // --- Selectors ---
+    const addKeyModal = document.querySelector("#addKeyModal");
+    const openModalBtn = document.querySelector("#openAddModal");
+    const logoutBtn = document.querySelector(".navbar-end .button.is-dark");
+    const saveKeyBtn = document.querySelector("#saveKeyBtn");
+    const keysTableBody = document.querySelector("#keysTableBody");
 
-document.querySelector("#logoutBtn").addEventListener("click", function() {
-    logoutUser();
-});
+    const closeModalElements = document.querySelectorAll("#addKeyModal .modal-background, #addKeyModal .delete, #addKeyModal .modal-card-foot .is-light");
 
-// ==========================================
-// 5. MODAL LOGIC
-// ==========================================
-const modal = document.createElement("div");
-modal.classList.add("modal");
-modal.style.display = "none";
-modal.innerHTML = `
-    <div class="modal-content">
-        <h2 style="margin-bottom:1.5rem">New API Key</h2>
-        <input type="text" id="serviceName" placeholder="Service (e.g. OpenAI)" />
-        <input type="text" id="apiKeyName" placeholder="Label (e.g. Main Dev)" />
-        <input type="password" id="apiKeyValue" placeholder="Secret Key Value" />
-        <div class="modal-btns">
-            <button id="closeModal" style="background:transparent; border:1px solid var(--border); color:var(--text-dim)">Cancel</button>
-            <button id="submitApiKey" style="background:var(--accent); color:white; border:none">Save Secret</button>
-        </div>
-    </div>
-`;
-document.body.appendChild(modal);
+    // --- Helper: Create Row Element ---
+    // Generates the <tr> structure for a single key entry
+    function createKeyRow(data) {
+        const row = document.createElement("tr");
+        row.setAttribute("data-id", data.key_id);
 
-document.querySelector(".addserv").addEventListener("click", function() { modal.style.display = "flex"; });
-document.querySelector("#closeModal").addEventListener("click", function() { modal.style.display = "none"; });
+        row.innerHTML = `
+            <td class="is-vcentered">${data.service_name}</td>
+            <td class="is-vcentered"><code>...${data.key_hint}</code></td>
+            <td class="has-text-right">
+                <div class="buttons is-right">
+                    <button class="button is-small btn-copy">Copy</button>
+                    <button class="button is-small btn-edit">Edit</button>
+                    <button class="button is-small btn-delete">Delete</button>
+                </div>
+            </td>
+        `;
+        return row;
+    }
 
-document.querySelector("#submitApiKey").addEventListener("click", async function() {
-    const serviceName = document.querySelector("#serviceName").value.trim();
-    const apiKeyName = document.querySelector("#apiKeyName").value.trim();
-    const apiKeyValue = document.querySelector("#apiKeyValue").value.trim();
-
-    if (!serviceName || !apiKeyValue) return alert("Missing fields");
-
-    const session = await getSession();
-    try {
-        const response = await fetch("http://127.0.0.1:8787/api/add-key", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + session.access_token
-            },
-            body: JSON.stringify({ serviceName, apiKeyName, apiKeyValue })
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            // Remove "Vault empty" message if it exists
-            if (keysBody.querySelector('div[style*="text-align: center"]')) {
-                keysBody.innerHTML = "";
-            }
-            renderKeyRow(result.data);
-            modal.style.display = "none";
-            document.querySelector("#serviceName").value = "";
-            document.querySelector("#apiKeyName").value = "";
-            document.querySelector("#apiKeyValue").value = "";
+    // --- Helper: Check for empty state ---
+    // Shows a placeholder if the table has no rows
+    function checkEmptyState() {
+        if (!keysTableBody) {
+            return;
         }
-    } catch (err) {
-        alert("Save failed.");
+
+        if (keysTableBody.children.length === 0) {
+            keysTableBody.innerHTML = `
+                <tr>
+                    <td colspan="3" class="has-text-centered has-text-grey py-6">
+                        No keys added yet. Click "Add Key" to start.
+                    </td>
+                </tr>`;
+        }
+    }
+
+    // --- API: Fetch and List Keys ---
+    // Runs on page load to populate the table from the backend
+    async function fetchKeys() {
+        try {
+            const response = await fetch("http://127.0.0.1:8787/api/list-keys", {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                const keys = result.data; // Expecting an array of keys
+
+                if (keys && keys.length > 0) {
+                    keysTableBody.innerHTML = ""; // Clear placeholder
+
+                    for (let i = 0; i < keys.length; i++) {
+                        const row = createKeyRow(keys[i]);
+                        keysTableBody.appendChild(row);
+                    }
+                }
+
+                checkEmptyState();
+            }
+            else {
+                console.error("Failed to fetch keys: Server error");
+                checkEmptyState();
+            }
+        }
+        catch (error) {
+            console.error("API Request failed (list-keys):", error);
+            checkEmptyState();
+        }
+    }
+
+    // Initial load call
+    fetchKeys();
+
+    // --- Modal Visibility ---
+    // Handles opening and closing the "Add Key" modal
+    if (openModalBtn) {
+        openModalBtn.addEventListener("click", function () {
+            addKeyModal.classList.add("is-active");
+        });
+    }
+
+    for (let i = 0; i < closeModalElements.length; i++) {
+        const el = closeModalElements[i];
+        el.addEventListener("click", function (e) {
+            e.preventDefault();
+            addKeyModal.classList.remove("is-active");
+        });
+    }
+
+    // --- Save Key (POST Request with token) ---
+    // Handles form submission and dynamic row injection on success
+    if (saveKeyBtn) {
+        saveKeyBtn.addEventListener("click", async function (e) {
+            e.preventDefault();
+
+            const serviceName = document.querySelector("#serviceName").value;
+            const apiKeyName = document.querySelector("#keyLabel").value;
+            const apiKeyValue = document.querySelector("#keyValue").value;
+
+            if (!serviceName || !apiKeyName || !apiKeyValue) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://127.0.0.1:8787/api/add-key", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + token
+                    },
+                    body: JSON.stringify({
+                        serviceName: serviceName,
+                        apiKeyName: apiKeyName,
+                        apiKeyValue: apiKeyValue
+                    })
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+
+                    // Remove "No keys" placeholder
+                    const placeholder = keysTableBody.querySelector("td[colspan]");
+                    if (placeholder) {
+                        keysTableBody.innerHTML = "";
+                    }
+
+                    // Inject New Row
+                    const row = createKeyRow(result.data);
+                    keysTableBody.appendChild(row);
+
+                    // Reset and Close
+                    document.querySelector("#serviceName").value = "";
+                    document.querySelector("#keyLabel").value = "";
+                    document.querySelector("#keyValue").value = "";
+                    addKeyModal.classList.remove("is-active");
+                }
+                else {
+                    alert("Error: Server refused the request. Check your token or backend logs.");
+                }
+            }
+            catch (error) {
+                console.error("API Request failed:", error);
+                alert("Network error. Is the worker running?");
+            }
+        });
+    }
+
+    // --- Logout ---
+    // Handles Supabase session termination
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", async function () {
+            try {
+                await logoutUser();
+            }
+            catch (error) {
+                console.error("Logout failed", error);
+            }
+        });
     }
 });

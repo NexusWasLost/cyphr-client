@@ -4,37 +4,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | KEEVLT</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
     <link rel="stylesheet" href="./assets/CSS/root.css">
     <link rel="stylesheet" href="./assets/CSS/dashboard.css">
-    <title>KeeVLT</title>
 </head>
 
 <body>
+
     <header>
-        <div class="container">
-            <a href="index.html" class="logo">KEEVLT</a>
-            <nav>
-                <span id="userEmail" style="font-size: 0.8rem; color: var(--text-dim);"></span>
-                <button class="btn" id="logoutBtn" style="background: var(--accent); color: white;">Logout</button>
-                <button class="show-token">Debug</button>
-            </nav>
-        </div>
+        <nav class="navbar">
+            <div class="container is-max-desktop">
+                <div class="navbar-brand">
+                    <a class="navbar-item has-text-weight-semibold" href="/">KEEVLT</a>
+                </div>
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <button class="button is-dark">Logout</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </nav>
     </header>
 
     <main>
-        <div class="container">
-            <button class="addserv">Add API Key</button>
-        </div>
+        <section class="section">
+            <div class="container is-max-desktop">
+
+                <div class="level is-mobile mb-6">
+                    <div class="level-left">
+                        <h2 class="subtitle is-4 has-text-weight-semibold m-0">Secret Vault</h2>
+                    </div>
+                    <div class="level-right">
+                        <button class="button is-dark" id="openAddModal">
+                            <span class="icon"><i class="ri-add-line"></i></span>
+                            <span>Add Key</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="table is-fullwidth is-hoverable">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Identifier</th>
+                                <th class="has-text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="keysTableBody"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <div class="container" style="text-align: center;">
-            <p>&copy; 2026 KeyVault Logic</p>
+    <div class="modal" id="addKeyModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Add New Key</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="field">
+                    <label class="label">Key Label</label>
+                    <div class="control">
+                        <input class="input" id="keyLabel" type="text" placeholder="e.g. My Primary OpenAI Key"
+                            required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Service Name</label>
+                    <div class="control">
+                        <input class="input" id="serviceName" type="text" placeholder="e.g. AWS, Stripe" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Key Value</label>
+                    <div class="control">
+                        <textarea class="textarea" id="keyValue" placeholder="Paste your key here..."
+                            required></textarea>
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot is-justify-content-flex-end">
+                <button class="button is-light mr-2">Cancel</button>
+                <button class="button is-dark btn-save-modal" id="saveKeyBtn">Save Key</button>
+            </footer>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container is-max-desktop has-text-centered">
+            <p class="has-text-weight-semibold">KEEVLT</p>
+            <p class="is-size-7">© 2026 KEEVLT. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="./assets/JS/script.js" type="module"></script>
     <script src="./assets/JS/dashboard.js" type="module" defer></script>
+
 </body>
 
 </html>

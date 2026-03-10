@@ -1,152 +1,136 @@
-/* =====================
-    Responsive Table Dashboard
-===================== */
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
+.table {
+    background-color: transparent !important;
+    color: var(--secondary-accent-color) !important;
 }
 
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    gap: 1rem;
-}
-
-.dashboard-header h1 { font-size: clamp(1.2rem, 5vw, 1.5rem); font-weight: 700; }
-
-.addserv {
-    background: var(--accent);
-    color: white;
-    padding: 0.6rem 1rem;
-    border-radius: 6px;
-    border: none;
-    font-weight: 600;
-    font-size: 0.85rem;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-/* Table Architecture */
-.keys-table {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.table-head {
-    display: grid;
-    grid-template-columns: 3fr 2fr 2fr;
-    padding: 1rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 0.7rem;
+.table thead th {
+    color: #888 !important;
+    border-bottom: 1px solid #222 !important;
     text-transform: uppercase;
+    font-size: 0.75rem;
     letter-spacing: 1px;
+}
+
+.table td {
+    border-bottom: 1px solid #1a1a1a !important;
+    padding: 1.25rem 0.75rem !important;
+    vertical-align: middle !important;
+}
+
+code {
+    background-color: #111 !important;
+    color: var(--primary-accent-color) !important;
+    padding: 0.4rem 0.6rem !important;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.table .buttons .button {
+    min-width: 100px;
+    height: 2.5rem;
+    justify-content: center;
+    font-weight: 600;
+    border: none !important;
+    background-color: #1a1a1a !important;
+    color: var(--secondary-accent-color) !important;
+}
+
+.modal-card-foot .button:not(:last-child) {
+    margin-right: 0.75rem !important;
+}
+
+/* Save Button with Primary Accent */
+.btn-save-modal {
+    background-color: var(--primary-accent-color) !important;
+    color: white !important;
+    border: none !important;
     font-weight: 600;
 }
 
-.key-row {
-    display: grid;
-    grid-template-columns: 3fr 2fr 2fr;
-    align-items: center;
-    padding: 1.25rem 1rem;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s ease;
+.btn-save-modal:hover {
+    opacity: 0.9;
 }
 
-.key-row:hover { background: rgba(255, 255, 255, 0.02); }
-
-.col-service { overflow: hidden; }
-.service-main { display: block; font-weight: 600; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.service-sub  { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
-
-.col-hint { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); }
-
-.col-actions { display: flex; justify-content: flex-end; gap: 0.5rem; }
-
-.action-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 0.4rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    cursor: pointer;
-    font-weight: 500;
+.modal-card-head,
+.modal-card-foot {
+    background-color: #111 !important;
+    border: none !important;
 }
 
-.copy-btn:hover   { background: var(--text); color: var(--bg); }
-.delete-btn:hover { border-color: #ef4444; color: #ef4444; background: rgba(239, 68, 68, 0.05); }
+.modal-card-body {
+    background-color: #0a0a0a !important;
+    color: var(--secondary-accent-color) !important;
+}
 
-/* Responsive Mobile Logic */
-@media (max-width: 768px) {
-    .table-head { display: none; } /* Hide headers on mobile */
+.modal-card-title {
+    color: var(--secondary-accent-color) !important;
+    font-weight: bold;
+}
 
-    .key-row {
-        grid-template-columns: 1fr 1fr; /* Two column grid for mobile */
-        grid-template-areas:
-            "info hint"
-            "actions actions";
-        gap: 1rem;
-        padding: 1.5rem 1rem;
+.modal .label {
+    color: #888 !important;
+}
+
+.modal .input,
+.modal .textarea {
+    background-color: #1a1a1a !important;
+    resize: none;
+    color: var(--secondary-accent-color) !important;
+}
+
+.modal .input:focus,
+.modal .textarea:focus {
+    border: 1px solid var(--primary-accent-color) !important;
+}
+
+/* --- RESPONSIVE: THE "SAME LEVEL" ALIGNMENT --- */
+@media screen and (max-width: 768px) {
+    .table thead {
+        display: none;
     }
 
-    .col-service { grid-area: info; }
-    .col-hint { grid-area: hint; text-align: right; font-size: 0.75rem; }
-    .col-actions {
-        grid-area: actions;
-        justify-content: flex-start;
-        border-top: 1px solid rgba(255,255,255,0.05);
-        padding-top: 1rem;
+    .table tr {
+        display: flex;
+        flex-wrap: wrap;
+        /* Allows the button row to drop while keeping top items together */
+        padding: 1.5rem 0.5rem;
+        border-bottom: 1px solid #222;
     }
-    .action-btn { flex: 1; text-align: center; padding: 0.6rem; }
-}
 
-@media (max-width: 480px) {
-    .key-row {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "info"
-            "hint"
-            "actions";
+    /* Service Name (1st TD) */
+    .table td:nth-child(1) {
+        flex: 1;
+        border: none !important;
+        padding: 0.5rem 0 !important;
+        font-weight: bold;
     }
-    .col-hint { text-align: left; margin-top: -0.5rem; margin-bottom: 0.5rem; }
-}
 
-/* Modal */
-.modal {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-    display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 1.5rem;
-}
-.modal-content {
-    background: var(--panel); border: 1px solid var(--border); padding: 2rem;
-    width: 100%; max-width: 400px; border-radius: 12px;
-}
-.modal-content input {
-    width: 100%; padding: 0.8rem; margin-bottom: 1rem;
-    background: var(--bg); border: 1px solid var(--border); color: white; border-radius: 6px;
-}
-.modal-btns { display: flex; gap: 0.75rem; }
-.modal-btns button { flex: 1; padding: 0.75rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
+    /* Identifier (2nd TD) */
+    .table td:nth-child(2) {
+        flex: 0 auto;
+        text-align: right !important;
+        border: none !important;
+        padding: 0.5rem 0 !important;
+    }
 
-.edit-input {
-    background: var(--bg);
-    border: 1px solid var(--accent);
-    color: var(--text);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    width: 100%;
-    margin-bottom: 2px;
-}
+    /* Action row at the bottom (3rd TD) */
+    .table td:last-child {
+        width: 100% !important;
+        margin-top: 1rem;
+        padding-top: 1rem !important;
+        border-bottom: none !important;
+        justify-content: center;
+    }
 
-.key-row.editing {
-    background: rgba(59, 130, 246, 0.05);
-    border-color: var(--accent);
-}
+    .table .buttons {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+    }
 
-.save-btn { background: var(--accent) !important; color: white !important; }
-.cancel-btn { border-color: var(--text-dim) !important; }
+    .table .buttons .button {
+        flex: 1;
+        margin: 0 !important;
+        min-width: 0;
+    }
+}

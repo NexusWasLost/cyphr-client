@@ -1,45 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEEVLT</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/CSS/root.css">
-    <title>KeeVLT</title>
+    <link rel="stylesheet" href="./assets/CSS/style.css">
 </head>
+
 <body>
+
     <header>
-        <div class="container">
-            <a href="index.html" class="logo">KEEVLT</a>
-            <nav>
-                <a href="dashboard.html">My Keys</a>
-                <a href="signin.html" class="btn" style="background: var(--accent); color: white;">Login</a>
-            </nav>
-        </div>
+        <nav class="navbar">
+            <div class="container is-max-desktop">
+
+                <div class="navbar-brand">
+                    <a class="navbar-item has-text-weight-semibold">KEEVLT</a>
+                </div>
+
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+
+                        <a class="navbar-item" href="dashboard.html">
+                            My Keys
+                        </a>
+
+                        <div class="navbar-item">
+                            <a href="login.html"><button class="button is-dark">Login</button></a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </nav>
     </header>
 
+
     <main>
-        <div class="container">
-            <section class="hero" style="padding: 100px 0; text-align: center;">
-                <h1 style="font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; cursor: default;">
-                    API Key Storage <br>
-                    <span style="color: var(--accent);">For Developers.</span>
-                </h1>
-                <p style="max-width: 600px; margin: 0 auto 2.5rem auto; color: var(--text-dim); font-size: 1.2rem; cursor: default">
-                    A secure, open-source vault to group your service keys. Login with GitHub, generate a hash, and never lose your credentials again.
-                </p>
-                <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <a href="signin.html" class="btn" style="background: var(--accent); color: white; text-decoration: none;">Get Started</a>
-                    <button class="btn" style="background: transparent; color: white; border: 1px solid var(--border);">Documentation</button>
+
+        <section class="section hero-top">
+            <div class="container is-max-desktop">
+
+                <div class="has-text-centered">
+
+                    <h1 class="title is-1">
+                        Simple API Key Storage <p style="color: var(--primary-accent-color);">for Developers</p>
+                    </h1>
+
+                    <p class="subtitle is-5">
+                        A secure, encrypted vault for your service keys.
+                        Group your secrets and never lose credentials again.
+                    </p>
+
+                    <div class="buttons is-centered mt-5">
+
+                        <button class="button is-dark is-medium" style="background-color: var(--primary-accent-color);">Get Started</button>
+                        <button class="button is-light is-medium">View Docs</button>
+
+                    </div>
+
                 </div>
-            </section>
-        </div>
+
+            </div>
+        </section>
+
     </main>
 
-    <footer>
-        <div class="container" style="text-align: center;">
-            <p>&copy; 2026 KeyVault Logic. No cookies, no tracking.</p>
+
+    <footer class="footer">
+        <div class="container is-max-desktop has-text-centered">
+
+            <p class="has-text-weight-semibold">
+                KEEVLT
+            </p>
+
+            <p class="is-size-7">
+                © 2026 KEEVLT. All rights reserved.
+            </p>
+
         </div>
     </footer>
 
 </body>
+
 </html>

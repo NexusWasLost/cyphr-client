@@ -6,13 +6,15 @@ const pKey = "sb_publishable_H1ZiP-Z0WKnCX5eU7hbt0g_rKaHG2pc";
 export const supabase = createClient(supabaseURL, pKey);
 
 // Trigger GitHub OAuth
-export const loginWithGithub = function() {
-    supabase.auth.signInWithOAuth({
+export const loginWithGithub = async function() {
+    const { error } = await supabase.auth.signInWithOAuth({
         provider: "github",
         options: {
             redirectTo: window.location.origin + "/dashboard.html"
         }
     });
+
+    if (error) console.error("Login error:", error.message);
 }
 
 // Logout user

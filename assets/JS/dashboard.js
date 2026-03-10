@@ -106,7 +106,7 @@ async function fetchAllKeys() {
 window.addEventListener("load", async function() {
     const session = await getSession();
     if (!session) {
-        window.location.href = "/signin.html";
+        window.location.href = "/login.html";
         return;
     }
 

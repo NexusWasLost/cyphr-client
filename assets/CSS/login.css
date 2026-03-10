@@ -1,0 +1,29 @@
+.login-hero {
+    margin-top: 6rem;
+}
+
+.title {
+    color: var(--secondary-accent-color) !important;
+}
+
+.subtitle {
+    color: #b5b5b5 !important;
+}
+
+/* GitHub Button Styling */
+.github-btn {
+    background-color: var(--primary-accent-color) !important;
+    color: var(--secondary-accent-color) !important;
+    border: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.github-btn:hover {
+    opacity: 0.9;
+    color: white !important;
+}
+
+.github-btn .icon {
+    font-size: 2rem;
+}

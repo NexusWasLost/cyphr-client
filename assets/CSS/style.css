@@ -1,0 +1,20 @@
+.hero-top {
+  margin-top: 2rem;
+}
+
+.subtitle {
+  max-width: 600px;
+  margin: 1rem auto;
+}
+
+@media(max-width: 1024px) {
+  .hero-top {
+    margin: 1rem
+  }
+}
+
+@media(max-width: 768px) {
+  .hero-top {
+    margin: 0.5rem
+  }
+}

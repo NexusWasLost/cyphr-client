@@ -35,6 +35,14 @@ code {
     color: var(--secondary-accent-color) !important;
 }
 
+#btn-copy{
+    background-color: var(--primary-accent-color) !important;
+}
+
+#btn-copy, #btn-del{
+    font-size: 1rem !important;
+}
+
 .modal-card-foot .button:not(:last-child) {
     margin-right: 0.75rem !important;
 }

@@ -32,17 +32,14 @@ async function init() {
 
 function createKeyRow(data) {
     const row = document.createElement("tr");
-
     row.setAttribute("data-id", data.key_id);
-
     row.innerHTML = `
-        <td class="is-vcentered">${data.service_name}</td>
+        <td class="is-vcentered">${data.service_name} - ${data.key_name}</td>
         <td class="is-vcentered"><code>...${data.key_hint}</code></td>
         <td class="has-text-right">
             <div class="buttons is-right">
-                <button class="button is-small btn-copy">Copy</button>
-                <button class="button is-small btn-edit">Edit</button>
-                <button class="button is-small btn-delete">Delete</button>
+                <button id="btn-copy" class="button is-small is-dark">Copy</button>
+                <button id="btn-del" class="button is-small is-dark">Delete</button>
             </div>
         </td>
     `;

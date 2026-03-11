@@ -64,7 +64,7 @@ function checkEmptyState(keysTableBody) {
 
 async function fetchKeys(token, keysTableBody) {
     try {
-        const response = await fetch("http://127.0.0.1:8787/api/list-keys", {
+        const response = await fetch("https://cyphr-server.qe7.workers.dev/api/list-keys", {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + token

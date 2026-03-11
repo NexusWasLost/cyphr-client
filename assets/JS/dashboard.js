@@ -129,7 +129,7 @@ function setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token) {
         }
 
         try {
-            const response = await fetch("https://cyphr-server.qe7.workers.dev/api/add-key", {
+            const response = await fetch(`${baseURL}/api/add-key`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -171,7 +171,7 @@ function setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token) {
 // --- API: Delete Key (Standalone) ---
 async function deleteKey(keyId, token) {
     try {
-        const response = await fetch(`http://127.0.0.1:8787/api/del-key/${keyId}`, {
+        const response = await fetch(`${baseURL}/api/del-key/${keyId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": "Bearer " + token
@@ -195,7 +195,7 @@ async function deleteKey(keyId, token) {
 // --- API: Update Key ---
 async function updateKey(keyId, token, newServiceName, newAPIKeyName) {
     try {
-        const response = await fetch(`http://127.0.0.1:8787/api/update-key/${keyId}`, {
+        const response = await fetch(`${baseURL}/api/update-key/${keyId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -234,7 +234,7 @@ function setupCopyAndDeleteHandler(keysTableBody, token) {
         if (e.target.classList.contains("btn-copy")) {
             const button = e.target;
             try {
-                const response = await fetch(`http://127.0.0.1:8787/api/get-key/${keyId}`, {
+                const response = await fetch(`${baseURL}/api/get-key/${keyId}`, {
                     method: "GET",
                     headers: { "Authorization": "Bearer " + token }
                 });

@@ -1,4 +1,4 @@
-import { getSession, logoutUser } from "./script.js";
+import { getSession, logoutUser, baseURL } from "./script.js";
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -64,7 +64,7 @@ function checkEmptyState(keysTableBody) {
 
 async function fetchKeys(token, keysTableBody) {
     try {
-        const response = await fetch("https://cyphr-server.qe7.workers.dev/api/list-keys", {
+        const response = await fetch(`${baseURL}/api/list-keys`, {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + token
@@ -129,7 +129,7 @@ function setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token) {
         }
 
         try {
-            const response = await fetch("http://127.0.0.1:8787/api/add-key", {
+            const response = await fetch("https://cyphr-server.qe7.workers.dev/api/add-key", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

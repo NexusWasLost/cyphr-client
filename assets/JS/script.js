@@ -3,6 +3,8 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 const supabaseURL = "https://nflezpwzohwaqwsqswla.supabase.co";
 const pKey = "sb_publishable_H1ZiP-Z0WKnCX5eU7hbt0g_rKaHG2pc";
 
+export const baseURL = "https://cyphr-server.qe7.workers.dev"
+
 export const supabase = createClient(supabaseURL, pKey);
 
 // Trigger GitHub OAuth

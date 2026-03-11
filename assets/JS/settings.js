@@ -1,4 +1,4 @@
-import { getSession, logoutUser } from "./script.js";
+import { getSession, logoutUser, baseURL } from "./script.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
     const session = await getSession();
@@ -49,7 +49,7 @@ function setupDeleteUser(session){
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`http://127.0.0.1:8787/api/del-user/${session.user.id}`, {
+            const response = await fetch(`${baseURL}/api/del-user/${session.user.id}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": "Bearer " + session.access_token

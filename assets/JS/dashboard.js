@@ -262,7 +262,7 @@ function setupCopyAndDeleteHandler(keysTableBody, token) {
         }
 
         // --- Delete Key ---
-        if (e.target.classList.contains("btn-delete")) {
+        if (e.target.classList.contains("btn-del")) {
             const confirmed = confirm("Are you sure you want to delete this key?");
             if (!confirmed) return;
 

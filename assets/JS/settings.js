@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     setupSettingsLogout();
     setupUserInfo(session);
-    setupDeleteUser(session);
+    setupDeleteUser(session.access_token);
 });
 
 function setupUserInfo(session){
@@ -39,7 +39,7 @@ function setupSettingsLogout() {
     });
 }
 
-function setupDeleteUser(session){
+function setupDeleteUser(token){
     const delBtn = document.querySelector("#deleteAccountBtn");
 
     if (!delBtn) return;
@@ -49,10 +49,10 @@ function setupDeleteUser(session){
         if (!confirmed) return;
 
         try {
-            const response = await fetch(`${baseURL}/api/del-user/${session.user.id}`, {
+            const response = await fetch(`${baseURL}/api/del-user`, {
                 method: "DELETE",
                 headers: {
-                    "Authorization": "Bearer " + session.access_token
+                    "Authorization": "Bearer " + token
                 }
             });
 

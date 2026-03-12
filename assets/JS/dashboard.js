@@ -1,4 +1,4 @@
-import { getSession, logoutUser, baseURL } from "./script.js";
+import { getSession, baseURL } from "./script.js";
 
 document.addEventListener("DOMContentLoaded", init);
 

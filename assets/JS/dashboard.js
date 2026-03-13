@@ -51,9 +51,6 @@ function createKeyRow(data) {
 
 function checkEmptyState(keysTableBody) {
     if (!keysTableBody) return;
-
-    if (keysTableBody.children.length !== 0) return;
-
     keysTableBody.innerHTML = `
         <tr>
             <td colspan="3" class="has-text-centered has-text-grey py-6">
@@ -62,7 +59,20 @@ function checkEmptyState(keysTableBody) {
         </tr>`;
 }
 
+function initiateKeyLoader(keysTableBody) {
+    keysTableBody.innerHTML = `
+        <tr>
+            <td colspan="3" class="has-text-centered py-6">
+                <div class="loader-wrapper is-flex is-flex-direction-column is-align-items-center">
+                    <div class="loader is-loading mb-3" style="height: 40px; width: 40px;"></div>
+                    <p class="has-text-grey is-size-7 monospace">INITIALIZING SECURE VAULT...</p>
+                </div>
+            </td>
+        </tr>`;
+}
+
 async function fetchKeys(token, keysTableBody) {
+    initiateKeyLoader(keysTableBody);
     try {
         const response = await fetch(`${baseURL}/api/list-keys`, {
             method: "GET",
@@ -354,11 +364,11 @@ function setupEditModal(keysTableBody, token) {
     }
 }
 
-function setUserAvatar(avatarURL){
+function setUserAvatar(avatarURL) {
     document.querySelector("#userAvatar").setAttribute("src", avatarURL);
 }
 
-function updateKeyCount(){
+function updateKeyCount() {
     const totalKeys = document.querySelectorAll(".keyRow");
     const keys = document.querySelector("#totalKeyCount");
     keys.textContent = totalKeys.length;

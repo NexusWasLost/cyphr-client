@@ -1,20 +1,104 @@
+/* --- HERO REFINEMENT --- */
 .hero-top {
-  margin-top: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
-.subtitle {
-  max-width: 600px;
-  margin: 1rem auto;
+.title {
+  letter-spacing: -1px;
+  line-height: 1.1;
 }
 
-@media(max-width: 1024px) {
-  .hero-top {
-    margin: 1rem
-  }
+/* --- TECHNICAL SPECS --- */
+.spec-number {
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-right: 1.5rem;
+  color: var(--primary-accent-color);
+  padding-top: 3px;
 }
 
+.status-card {
+  border-left: 1px solid #333;
+  padding: 1rem 0 1rem 2rem;
+}
+
+/* --- SYSTEM STATUS --- */
+.status-dot {
+  height: 8px;
+  width: 8px;
+  background: #00d1b2;
+  border-radius: 50%;
+  margin-right: 12px;
+  box-shadow: 0 0 10px rgba(0, 209, 178, 0.3);
+}
+
+/* --- TECH BAR UNIFIED STYLES --- */
+.tech-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  /* Consistent spacing between items */
+}
+
+.tech-bar .level-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  /* Fixed width for equal spacing */
+  height: 3rem;
+  /* Fixed height for perfect alignment */
+}
+
+/* Base style for ALL icons and images */
+.tech-bar .level-item i,
+.tech-stack-img {
+  opacity: 0.4;
+  filter: grayscale(100%) brightness(200%);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+/* Force specific sizing to keep them uniform */
+.tech-bar .level-item i {
+  font-size: 2.2rem !important;
+  /* Slightly bigger font icons */
+  line-height: 1;
+}
+
+.tech-stack-img {
+  height: 1.8rem;
+  /* PNGs/SVGs usually need to be slightly smaller to look 'equal' to fonts */
+  width: auto;
+}
+
+/* Hover Effect: Pure Clean Transition */
+.tech-bar .level-item i:hover,
+.tech-stack-img:hover {
+  opacity: 1;
+  filter: grayscale(0%) brightness(100%);
+  transform: translateY(-3px);
+}
+
+/* --- MOBILE ADJUSTMENTS --- */
 @media(max-width: 768px) {
-  .hero-top {
-    margin: 0.5rem
+  .tech-bar {
+    gap: 0.5rem;
+  }
+
+  .tech-bar .level-item {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .tech-bar .level-item i {
+    font-size: 1.6rem !important;
+  }
+
+  .tech-stack-img {
+    height: 1.3rem;
   }
 }

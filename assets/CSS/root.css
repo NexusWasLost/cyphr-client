@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
 :root {
   --primary-accent-color: #9a594a;
   --secondary-accent-color: #fff;
+}
+
+*{
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
 body {
@@ -26,7 +33,7 @@ a {
 
 /* for icons */
 .r-icon{
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 /* Force Navbar to stay horizontal on mobile */

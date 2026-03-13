@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyphr</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
     <link rel="stylesheet" href="./assets/CSS/root.css">
     <link rel="stylesheet" href="./assets/CSS/style.css">
 </head>
@@ -40,33 +42,109 @@
 
 
     <main>
-
         <section class="section hero-top">
             <div class="container is-max-desktop">
-
-                <div class="has-text-centered">
-
-                    <h1 class="title is-1">
-                        Simple API Key Storage <p style="color: var(--primary-accent-color);">for Developers</p>
-                    </h1>
-
-                    <p class="subtitle is-5">
-                        A secure, encrypted vault for your service keys.
-                        Group your secrets and never lose credentials again.
-                    </p>
-
-                    <div class="buttons is-centered mt-5">
-
-                        <button class="button is-dark is-medium" style="background-color: var(--primary-accent-color);">Get Started</button>
-                        <button class="button is-light is-medium">About</button>
-
+                <div class="columns is-vcentered px-4">
+                    <div class="column is-8">
+                        <h1 class="title is-size-1-desktop is-size-2-mobile has-text-weight-bold mb-5">
+                            Simple API Key Storage <br>
+                            <span style="color: var(--primary-accent-color);">for Developers</span>
+                        </h1>
+                        <p class="subtitle is-5 has-text-grey-light mb-6" style="margin: 0; max-width: 500px;">
+                            A high-performance, encrypted vault for your service keys.
+                            Group your secrets and never lose credentials again.
+                        </p>
+                        <div class="buttons">
+                            <button class="button is-dark is-medium px-5"
+                                style="background-color: var(--primary-accent-color); border: none;">Get
+                                Started</button>
+                            <a href="#"><button class="button is-ghost is-medium has-text-white">About</button></a>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
         </section>
 
+        <section class="section py-0">
+            <div class="container is-max-desktop">
+                <div class="columns is-vcentered px-4">
+
+                    <div class="column is-7">
+                        <div class="py-4">
+                            <div class="is-flex is-align-items-start mb-5">
+                                <span class="spec-number">01</span>
+                                <div>
+                                    <h3 class="has-text-weight-bold is-size-5">AES protection at the Edge.</h3>
+                                    <p class="is-size-6 has-text-grey">Every secret encrypted at the edge using AES-256-GCM before it ever touches disk.</p>
+                                </div>
+                            </div>
+
+                            <div class="is-flex is-align-items-start mb-5">
+                                <span class="spec-number">02</span>
+                                <div>
+                                    <h3 class="has-text-weight-bold is-size-5">Fully Open Source</h3>
+                                    <p class="is-size-6 has-text-grey">No black boxes. The entire codebase is public so you can verify exactly how your data is handled.</p>
+                                </div>
+                            </div>
+
+                            <div class="is-flex is-align-items-start">
+                                <span class="spec-number">03</span>
+                                <div>
+                                    <h3 class="has-text-weight-bold is-size-5">Clean Management</h3>
+                                    <p class="is-size-6 has-text-grey">A minimal dashboard designed to help you manage secrets and get back to building in seconds.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-4 is-offset-1">
+                        <div class="status-card">
+                            <p class="is-size-7 is-uppercase has-text-grey mb-3" style="letter-spacing: 2px;">Network
+                                Status</p>
+                            <div class="is-flex is-align-items-center mb-3">
+                                <div class="status-dot"></div>
+                                <span class="is-size-6 has-text-weight-semibold">Systems Operational</span>
+                            </div>
+                            <p class="is-size-7 has-text-grey">Your encrypted vault is currently synced across all edge
+                                locations.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section py-5 mt-6 mb-5">
+            <div class="container is-max-desktop has-text-centered">
+                <p class="is-uppercase is-size-7 has-text-grey mb-5" style="letter-spacing: 2px; opacity: 0.6;">
+                    Built for the Edge
+                </p>
+                <div class="level is-mobile tech-bar">
+
+                    <div class="level-item">
+                        <i class="ri-nodejs-fill" title="Node.js"></i>
+                    </div>
+
+                    <div class="level-item">
+                        <i class="devicon-cloudflare-plain colored" title="Cloudflare"></i>
+                    </div>
+
+                    <div class="level-item">
+                        <img src="https://hono.dev/images/logo.png" class="tech-stack-img" alt="Hono" title="Hono" />
+                    </div>
+
+                    <div class="level-item">
+                        <i class="devicon-supabase-plain colored" title="Supabase"></i>
+                    </div>
+
+                    <div class="level-item">
+                        <img src="https://neon.tech/brand/neon-logomark-dark-color.svg" class="tech-stack-img"
+                            alt="Neon" title="Neon" />
+                    </div>
+
+                </div>
+            </div>
+        </section>
     </main>
 
 

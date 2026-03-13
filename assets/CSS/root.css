@@ -15,6 +15,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   color: var(--secondary-accent-color);
+  background-color: #14161A !important;
 }
 
 .navbar-item button {

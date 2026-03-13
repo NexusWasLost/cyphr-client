@@ -21,7 +21,7 @@
                 </div>
                 <div class="navbar-menu">
                     <div class="navbar-end">
-                        <a class="navbar-item">My Keys</a>
+                        <a class="navbar-item" href="dashboard.html">My Keys</a>
                     </div>
                 </div>
             </div>
@@ -30,21 +30,29 @@
 
     <main>
         <section class="section login-hero">
-            <div class="container is-max-desktop">
+            <div class="container">
                 <div class="columns is-centered">
-                    <div class="column is-5-desktop is-6-tablet has-text-centered">
+                    <div class="column is-4-desktop is-6-tablet">
 
-                        <h1 class="title is-2 mb-6">Welcome Back</h1>
-
-                        <p class="subtitle is-6 mb-6">
-                            Sign in to manage your encrypted service keys and maintain your developer vault.
-                        </p>
+                        <div class="has-text-centered mb-6">
+                            <a href="/" class="is-size-7 is-uppercase has-text-grey" style="letter-spacing: 2px;">
+                                <i class="ri-arrow-left-line"></i> Back to Home
+                            </a>
+                            <h1 class="title is-2 mt-4">Welcome Back</h1>
+                            <p class="subtitle is-6">
+                                Secure access to your encrypted vault.
+                            </p>
+                        </div>
 
                         <div class="login-box">
-                            <button class="button is-large is-fullwidth github-btn" id="githubSignIn">
+                            <button class="button is-medium is-fullwidth github-btn" id="githubSignIn">
                                 <span class="icon"><i class="ri-github-fill"></i></span>
-                                <span>Sign in with GitHub</span>
+                                <span>Continue with GitHub</span>
                             </button>
+
+                            <p class="is-size-7 has-text-centered mt-5 has-text-grey">
+                                By signing in, you agree to our terms of service and privacy policy.
+                            </p>
                         </div>
 
                     </div>

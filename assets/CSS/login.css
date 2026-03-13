@@ -1,29 +1,54 @@
 .login-hero {
-    margin-top: 6rem;
+    margin-top: 8rem;
+    padding: 0 1.5rem;
 }
 
 .title {
     color: var(--secondary-accent-color) !important;
+    letter-spacing: -1px;
 }
 
 .subtitle {
-    color: #b5b5b5 !important;
+    color: #888 !important;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* GitHub Button Styling */
+.login-box {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
 .github-btn {
-    background-color: var(--primary-accent-color) !important;
+    background-color: transparent !important;
     color: var(--secondary-accent-color) !important;
-    border: none;
+    border: 1px solid #333 !important;
     font-weight: 600;
-    transition: opacity 0.2s ease;
+    transition: all 0.3s ease;
+    height: 3.5rem !important;
+    font-size: 1.5rem;
 }
 
 .github-btn:hover {
-    opacity: 0.9;
-    color: white !important;
+    background-color: var(--secondary-accent-color) !important;
+    color: #000 !important;
+    border-color: var(--secondary-accent-color) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
 }
 
 .github-btn .icon {
-    font-size: 2rem;
+    margin-right: 0.5rem;
+    font-size: 1.4rem;
+}
+
+@media(max-width: 768px) {
+    .login-hero {
+        margin-top: 4rem;
+    }
+
+    .github-btn{
+        font-size: 1rem;
+    }
 }

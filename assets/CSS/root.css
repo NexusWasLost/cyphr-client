@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
 :root {
   --primary-accent-color: #9a594a;
   --secondary-accent-color: #fff;
@@ -72,4 +73,7 @@ main {
 .footer {
   padding: 2rem 1rem !important;
   color: var(--secondary-accent-color);
+  background: transparent !important;
+  margin-top: 4rem;
+  border-top: 1px solid #1a1a1a;
 }

@@ -101,4 +101,8 @@
   .tech-stack-img {
     height: 1.3rem;
   }
+
+  .is-vcentered{
+    padding-left: 0 !important;
+  }
 }

@@ -1,6 +1,12 @@
+/* --- TABLE REFINEMENT --- */
 .table {
     background-color: transparent !important;
     color: var(--secondary-accent-color) !important;
+}
+
+/* Bulma's .is-hoverable uses a specific background color, we just override it to be subtle */
+.table.is-hoverable tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 .table thead th {
@@ -17,48 +23,44 @@
     vertical-align: middle !important;
 }
 
-code {
-    background-color: #111 !important;
-    color: var(--primary-accent-color) !important;
-    padding: 0.4rem 0.6rem !important;
-    border-radius: 4px;
-    font-size: 0.9rem;
-}
-
+/* --- ACTION BUTTONS (IDs) --- */
 .table .buttons .button {
     min-width: 100px;
-    height: 2.5rem;
-    justify-content: center;
+    height: 2.2rem;
     font-weight: 600;
-    border: none !important;
-    background-color: #1a1a1a !important;
+    font-size: 0.75rem !important;
+    background-color: transparent !important;
+    border: 1px solid #333 !important;
     color: var(--secondary-accent-color) !important;
 }
 
-#btn-copy{
-    background-color: var(--primary-accent-color) !important;
+#btn-copy {
+    border-color: var(--primary-accent-color) !important;
+    color: var(--primary-accent-color) !important;
 }
 
-#btn-copy, #btn-del{
+#btn-copy:hover {
+    background-color: var(--primary-accent-color) !important;
+    color: #000 !important;
+}
+
+#btn-edit:hover {
+    border-color: #eee !important;
+    color: #eee !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+#btn-del:hover {
+    border-color: #ff3860 !important;
+    color: #ff3860 !important;
+    background-color: rgba(255, 56, 96, 0.1) !important;
+}
+
+#btn-copy, #btn-edit, #btn-del{
     font-size: 1rem !important;
 }
 
-.modal-card-foot .button:not(:last-child) {
-    margin-right: 0.75rem !important;
-}
-
-/* Save Button with Primary Accent */
-.btn-save-modal {
-    background-color: var(--primary-accent-color) !important;
-    color: white !important;
-    border: none !important;
-    font-weight: 600;
-}
-
-.btn-save-modal:hover {
-    opacity: 0.9;
-}
-
+/* --- MODAL SYNC --- */
 .modal-card-head,
 .modal-card-foot {
     background-color: #111 !important;
@@ -67,31 +69,16 @@ code {
 
 .modal-card-body {
     background-color: #0a0a0a !important;
-    color: var(--secondary-accent-color) !important;
-}
-
-.modal-card-title {
-    color: var(--secondary-accent-color) !important;
-    font-weight: bold;
-}
-
-.modal .label {
-    color: #888 !important;
 }
 
 .modal .input,
 .modal .textarea {
     background-color: #1a1a1a !important;
-    resize: none;
+    border: 1px solid #333 !important;
     color: var(--secondary-accent-color) !important;
 }
 
-.modal .input:focus,
-.modal .textarea:focus {
-    border: 1px solid var(--primary-accent-color) !important;
-}
-
-/* --- RESPONSIVE: THE "SAME LEVEL" ALIGNMENT --- */
+/* --- YOUR RESPONSIVE FLEX LOGIC --- */
 @media screen and (max-width: 768px) {
     .table thead {
         display: none;
@@ -100,34 +87,26 @@ code {
     .table tr {
         display: flex;
         flex-wrap: wrap;
-        /* Allows the button row to drop while keeping top items together */
         padding: 1.5rem 0.5rem;
         border-bottom: 1px solid #222;
     }
 
-    /* Service Name (1st TD) */
     .table td:nth-child(1) {
         flex: 1;
         border: none !important;
-        padding: 0.5rem 0 !important;
         font-weight: bold;
     }
 
-    /* Identifier (2nd TD) */
     .table td:nth-child(2) {
         flex: 0 auto;
         text-align: right !important;
         border: none !important;
-        padding: 0.5rem 0 !important;
     }
 
-    /* Action row at the bottom (3rd TD) */
     .table td:last-child {
         width: 100% !important;
         margin-top: 1rem;
-        padding-top: 1rem !important;
         border-bottom: none !important;
-        justify-content: center;
     }
 
     .table .buttons {
@@ -139,6 +118,5 @@ code {
     .table .buttons .button {
         flex: 1;
         margin: 0 !important;
-        min-width: 0;
     }
 }

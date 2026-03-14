@@ -22,7 +22,7 @@ export const loginWithGithub = async function() {
 // Logout user
 export const logoutUser = async function() {
     await supabase.auth.signOut();
-    window.location.href = "/";
+    window.location.href = window.location.origin + "/login.html";
 }
 
 // Return session data if logged in, else null
@@ -38,4 +38,13 @@ export const getUser = async function() {
         return session.user;
     }
     return null;
+}
+
+export async function hasAuthExpired(statusCode){
+    if(statusCode !== 401){
+        return false;
+    }
+
+    await logoutUser();
+    return true;
 }

@@ -1,4 +1,4 @@
-import { getSession, baseURL } from "./script.js";
+import { getSession } from "./script.js";
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -85,6 +85,8 @@ async function fetchKeys(token, keysTableBody) {
             }
         });
 
+        if(await hasAuthExpired(response.status)) return;
+
         if (!response.ok) {
             console.error("Failed to fetch keys");
             checkEmptyState(keysTableBody);
@@ -158,6 +160,8 @@ function setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token) {
                 })
             });
 
+            if(await hasAuthExpired(response.status)) return;
+
             if (!response.ok) {
                 alert("Server refused request");
                 return;
@@ -195,6 +199,8 @@ async function deleteKey(keyId, token) {
             }
         });
 
+        if(await hasAuthExpired(response.status)) return;
+
         if (!response.ok) {
             alert("Failed to delete the key.");
             return false;
@@ -223,6 +229,8 @@ async function updateKey(keyId, token, newServiceName, newAPIKeyName) {
                 newAPIKeyName
             })
         });
+
+        if(await hasAuthExpired(response.status)) return;
 
         if (!response.ok) {
             alert("Failed to update key.");
@@ -255,6 +263,8 @@ function setupCopyAndDeleteHandler(keysTableBody, token) {
                     method: "GET",
                     headers: { "Authorization": "Bearer " + token }
                 });
+
+                if(await hasAuthExpired(response.status)) return;
 
                 if (!response.ok) {
                     alert("Failed to fetch the key.");

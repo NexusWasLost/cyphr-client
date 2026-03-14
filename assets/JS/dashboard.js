@@ -1,4 +1,4 @@
-import { getSession } from "./script.js";
+import { getSession, hasAuthExpired, baseURL } from "./script.js";
 
 document.addEventListener("DOMContentLoaded", init);
 

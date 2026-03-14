@@ -33,7 +33,7 @@ async function init() {
 function createKeyRow(data) {
     const row = document.createElement("tr");
     row.setAttribute("data-id", data.key_id);
-    row.classList.add("keyRow"); //used for counting total keys
+    row.classList.add("key-row"); //used for counting total keys
     row.innerHTML = `
         <td class="is-vcentered">${data.service_name} - ${data.key_name}</td>
         <td class="is-vcentered"><code>...${data.key_hint}</code></td>
@@ -51,8 +51,12 @@ function createKeyRow(data) {
 
 function checkEmptyState(keysTableBody) {
     if (!keysTableBody) return;
+
+    const hasKeys = keysTableBody.querySelectorAll(".key-row").length > 0;
+    if (hasKeys) return;
+
     keysTableBody.innerHTML = `
-        <tr>
+        <tr class="has-no-key-row">
             <td colspan="3" class="has-text-centered has-text-grey py-6">
                 No keys added yet. Click "Add Key" to start.
             </td>
@@ -61,7 +65,7 @@ function checkEmptyState(keysTableBody) {
 
 function initiateKeyLoader(keysTableBody) {
     keysTableBody.innerHTML = `
-        <tr>
+        <tr class="loader-row">
             <td colspan="3" class="has-text-centered py-6">
                 <div class="loader-wrapper is-flex is-flex-direction-column is-align-items-center">
                     <div class="loader is-loading mb-3" style="height: 40px; width: 40px;"></div>
@@ -305,6 +309,7 @@ function setupEditModal(keysTableBody, token) {
     keysTableBody.addEventListener("click", function (e) {
         if (!e.target.classList.contains("btn-edit")) return;
         const row = e.target.closest("tr");
+        const keyId = row.getAttribute("data-id");
         const serviceText = row.children[0].innerText;
         const parts = serviceText.split(" - ");
 
@@ -315,6 +320,7 @@ function setupEditModal(keysTableBody, token) {
         editKeyLabel.value = originalLabel;
 
         updateKeyBtn.disabled = true;
+        editKeyModal.setAttribute("data-editing-id", keyId);
         editKeyModal.classList.add("is-active");
     });
 
@@ -339,15 +345,15 @@ function setupEditModal(keysTableBody, token) {
     updateKeyBtn.addEventListener("click", async function (e) {
         e.preventDefault();
 
-        const row = document.querySelector("tr[data-id]");
-        if (!row) return;
+        const activeId = editKeyModal.getAttribute("data-editing-id");
+        const row = document.querySelector(`tr[data-id="${activeId}"]`);
 
-        const keyId = row.getAttribute("data-id");
+        if (!row) return;
 
         const newServiceName = editServiceName.value;
         const newAPIKeyName = editKeyLabel.value;
 
-        const success = await updateKey(keyId, token, newServiceName, newAPIKeyName);
+        const success = await updateKey(activeId, token, newServiceName, newAPIKeyName);
 
         if (!success) return;
 
@@ -369,7 +375,7 @@ function setUserAvatar(avatarURL) {
 }
 
 function updateKeyCount() {
-    const totalKeys = document.querySelectorAll(".keyRow");
+    const totalKeys = document.querySelectorAll(".key-row");
     const keys = document.querySelector("#totalKeyCount");
     keys.textContent = totalKeys.length;
 }

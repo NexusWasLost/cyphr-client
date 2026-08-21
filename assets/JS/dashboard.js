@@ -163,6 +163,11 @@ function setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token) {
 
             if(await hasAuthExpired(response.status)) return;
 
+            //check status of 402 (limit reached)
+            if(response.status === 402){
+                await showAlert("Limit of 15 keys reached !");
+                return;
+            }
             if (!response.ok) {
                 await showAlert("Server refused request");
                 return;

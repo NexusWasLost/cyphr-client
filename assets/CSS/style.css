@@ -1,108 +1,317 @@
-/* --- HERO REFINEMENT --- */
-.hero-top {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+.hero-section {
+  padding: 5rem 1rem 2.5rem;
 }
 
-.title {
-  letter-spacing: -1px;
-  line-height: 1.1;
+.eyebrow,
+.section-heading>span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  font: 0.7rem "JetBrains Mono", monospace;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
-/* --- TECHNICAL SPECS --- */
-.spec-number {
-  font-family: monospace;
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-right: 1.5rem;
-  color: var(--primary-accent-color);
-  padding-top: 3px;
-}
-
-.status-card {
-  border-left: 1px solid #333;
-  padding: 1rem 0 1rem 2rem;
-}
-
-/* --- SYSTEM STATUS --- */
-.status-dot {
-  height: 8px;
-  width: 8px;
-  background: #00d1b2;
+.eyebrow i {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  margin-right: 12px;
-  box-shadow: 0 0 10px rgba(0, 209, 178, 0.3);
+  background: var(--success);
+  box-shadow: 0 0 10px rgba(72, 213, 151, 0.4);
 }
 
-/* --- TECH BAR UNIFIED STYLES --- */
-.tech-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  /* Consistent spacing between items */
+.hero-title {
+  margin: 0 !important;
+  font-size: clamp(4rem, 6vw, 6.3rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.07em;
+  line-height: 0.91 !important;
 }
 
-.tech-bar .level-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  /* Fixed width for equal spacing */
-  height: 3rem;
-  /* Fixed height for perfect alignment */
+.hero-title span {
+  color: var(--primary-accent-color);
 }
 
-/* Base style for ALL icons and images */
-.tech-bar .level-item i,
-.tech-stack-img {
-  opacity: 0.4;
-  filter: grayscale(100%) brightness(200%);
+.hero-copy {
+  max-width: 540px;
+  margin: 2rem 0 !important;
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.primary-button {
+  height: 3.2rem !important;
+  padding: 0 1.35rem !important;
+  border-radius: 8px !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+}
+
+.primary-button i,
+.text-button i {
+  margin-left: 0.45rem;
+}
+
+.text-button {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  font-size: 0.95rem !important;
+}
+
+.text-button:hover {
+  color: var(--text) !important;
+}
+
+.open-source {
+  margin-top: 1.75rem;
+  color: var(--text-dim);
+  font: 0.68rem "JetBrains Mono", monospace;
+}
+
+.open-source i {
+  margin-right: 0.35rem;
+}
+
+.vault {
+  overflow: hidden;
+  border: 1px solid #252934;
+  border-radius: 14px;
+  background: rgba(13, 15, 19, 0.95);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  transform: rotate(2deg);
   transition: all 0.3s ease;
-  display: block;
 }
 
-/* Force specific sizing to keep them uniform */
-.tech-bar .level-item i {
-  font-size: 2.2rem !important;
-  /* Slightly bigger font icons */
+.vault:hover {
+  transform: rotate(0) translateY(-4px);
+}
+
+.vault-header,
+.vault-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.35rem;
+}
+
+.vault-header {
+  height: 3.8rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.vault-header strong {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.vault-header span {
+  color: var(--text-dim);
+  font: 0.65rem "JetBrains Mono", monospace;
+}
+
+.vault-header i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.35rem;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+.vault-body {
+  padding: 1.4rem;
+}
+
+.vault-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+
+.vault-title div {
+  display: flex;
+  flex-direction: column;
+}
+
+.vault-title small {
+  color: var(--text-dim);
+  font: 0.58rem "JetBrains Mono", monospace;
+}
+
+.vault-title strong {
+  margin-top: 0.15rem;
+  font-size: 1rem;
+}
+
+.vault-title button {
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 7px;
+  background: var(--surface-raised);
+  color: var(--text-muted);
+}
+
+.key {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.key:last-child {
+  border-bottom: 0;
+}
+
+.key-icon {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--surface-raised);
+  color: var(--text-muted);
+}
+
+.key>div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.key>div strong {
+  font-size: 0.85rem;
+}
+
+.key>div small {
+  overflow: hidden;
+  color: var(--text-dim);
+  font: 0.58rem "JetBrains Mono", monospace;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.key>i:last-child {
+  margin-left: auto;
+  color: var(--text-dim);
+}
+
+.vault-footer {
+  height: 2.9rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font: 0.58rem "JetBrains Mono", monospace;
+}
+
+.features-section {
+  padding: 2rem 1rem 5.5rem;
+}
+
+.section-heading {
+  margin-bottom: 2.25rem;
+}
+
+.section-heading h2 {
+  max-width: 650px;
+  margin: 0;
+  font-size: clamp(2.6rem, 4vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.065em;
   line-height: 1;
 }
 
-.tech-stack-img {
-  height: 1.8rem;
-  /* PNGs/SVGs usually need to be slightly smaller to look 'equal' to fonts */
-  width: auto;
+.section-heading em {
+  color: var(--text-muted);
+  font-style: normal;
 }
 
-/* Hover Effect: Pure Clean Transition */
-.tech-bar .level-item i:hover,
-.tech-stack-img:hover {
-  opacity: 1;
-  filter: grayscale(0%) brightness(100%);
-  transform: translateY(-3px);
+.feature-card {
+  position: relative;
+  height: 100%;
+  padding: 1.6rem;
+  border-top: 1px solid var(--border);
+  background: transparent;
+  transition: border-color 0.2s;
 }
 
-/* --- MOBILE ADJUSTMENTS --- */
-@media(max-width: 768px) {
-  .tech-bar {
-    gap: 0.5rem;
+.feature-card:hover {
+  border-color: var(--primary-accent-color);
+}
+
+.feature-card>span {
+  color: var(--text-dim);
+  font: 0.62rem "JetBrains Mono", monospace;
+}
+
+.feature-card>i {
+  display: block;
+  margin: 2.5rem 0 1.5rem;
+  color: var(--primary-accent-color);
+  font-size: 1.35rem;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.feature-card p {
+  max-width: 320px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 850px) {
+  .hero-section {
+    padding-top: 2rem;
   }
 
-  .tech-bar .level-item {
-    width: 2.2rem;
-    height: 2.2rem;
+  .hero-title {
+    font-size: clamp(3.3rem, 14vw, 5rem) !important;
   }
 
-  .tech-bar .level-item i {
-    font-size: 1.6rem !important;
+  .hero-section .columns {
+    flex-direction: column;
   }
 
-  .tech-stack-img {
-    height: 1.3rem;
+  .hero-section .column.is-6,
+  .hero-section .column.is-5.is-offset-1 {
+    width: 100%;
+    margin-left: 0;
   }
 
-  .is-vcentered{
-    padding-left: 0 !important;
+  .vault {
+    transform: none;
+  }
+
+  .features-section {
+    padding-top: 1rem;
+  }
+
+  .features-section .columns {
+    flex-direction: column;
+  }
+
+  .features-section .column {
+    width: 100%;
+  }
+
+  .features-section .feature-card {
+    padding: 1.25rem;
+  }
+
+  .features-section .feature-card>i {
+    margin: 1rem 0 0.75rem;
   }
 }

@@ -9,123 +9,120 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./assets/images/favicon/site.webmanifest">
     <title>Settings | Cyphr</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
     <link rel="stylesheet" href="./assets/CSS/root.css">
     <link rel="stylesheet" href="./assets/CSS/settings.css">
-
 </head>
 
 <body>
     <header>
-        <nav class="navbar pt-1">
+        <nav class="navbar">
             <div class="container is-max-desktop">
-
-                <div class="navbar-brand">
-                    <a id="brand-name" class="navbar-item has-text-weight-bold" href="/">CYPHR</a>
-                </div>
-
+                <a id="brand-name" class="navbar-item" href="/">CYPHR</a>
+                <input type="checkbox" id="nav-toggle">
+                <label for="nav-toggle" class="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </label>
                 <div class="navbar-menu">
                     <div class="navbar-end">
-
-                        <div class="navbar-item">
-                            <a class="navbar-item" href="/dashboard.html">My Keys</a>
-                        </div>
-
-                        <div class="navbar-item">
-                            <button class="button is-dark">Logout</button>
-                        </div>
-
+                        <a class="navbar-item nav-link" href="/">Home</a>
+                        <a class="navbar-item nav-link" href="dashboard.html">My Keys</a>
+                        <a href="#" class="nav-link nav-button">Logout</a>
                     </div>
                 </div>
-
             </div>
         </nav>
     </header>
 
-
     <main>
-
-        <section class="section">
+        <section class="section settings-page">
             <div class="container is-max-desktop">
-
-                <h2 class="subtitle is-4 has-text-weight-semibold mb-6">Settings</h2>
-
-
-                <!-- ACCOUNT -->
-
-                <div class="settings-section">
-
-                    <h3 class="settings-title">Account</h3>
-
-                    <div class="settings-row">
-                        <span>Email</span>
-                        <span id="email-span" class="has-text-grey">email@example.xy</span>
-                    </div>
-
-                    <div class="settings-row">
-                        <span>Name</span>
-                        <span id="name-span" class="has-text-grey">John Doe</span>
-                    </div>
-
-                    <div class="settings-row">
-                        <span>Account Created</span>
-                        <span id="created-at-span" class="has-text-grey">March 2026</span>
-                    </div>
-
+                <div class="settings-header">
+                    <span class="settings-eyebrow">ACCOUNT</span>
+                    <h1>Settings</h1>
+                    <p>Manage your account and security preferences.</p>
                 </div>
 
-
-                <!-- SECURITY -->
-
                 <div class="settings-section">
-
-                    <h3 class="settings-title">Security</h3>
-
-                    <div class="settings-row action-row">
-                        <span>Logout</span>
-                        <button id="settingsLogoutBtn" class="button is-dark is-small">Logout <i class="ri-logout-box-r-line r-icon"></i></button>
+                    <h2 class="settings-title">Account</h2>
+                    <div class="settings-card">
+                        <div class="settings-row">
+                            <span>Email</span>
+                            <span id="email-span" class="settings-value">Loading...</span>
+                        </div>
+                        <div class="settings-row">
+                            <span>Name</span>
+                            <span id="name-span" class="settings-value">Loading...</span>
+                        </div>
+                        <div class="settings-row">
+                            <span>Account Created</span>
+                            <span id="created-at-span" class="settings-value">Loading...</span>
+                        </div>
                     </div>
-
                 </div>
 
-
-                <!-- DANGER ZONE -->
+                <div class="settings-section">
+                    <h2 class="settings-title">Security</h2>
+                    <div class="settings-card">
+                        <div class="settings-row action-row">
+                            <div>
+                                <span>Logout</span>
+                                <p>Sign out of your Cyphr account.</p>
+                            </div>
+                            <button id="settingsLogoutBtn" class="button settings-button">
+                                Logout
+                                <i class="ri-logout-box-r-line r-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="settings-section danger-zone">
-
-                    <h3 class="settings-title danger-title">Danger Zone</h3>
-
-                    <div class="settings-row action-row">
-                        <span>Delete Account </span>
-
-                        <button id="deleteAccountBtn" class="button danger-btn is-small">
-                            Delete <i class="ri-delete-bin-6-line r-icon"></i>
-                        </button>
-
+                    <h2 class="settings-title danger-title">Danger Zone</h2>
+                    <div class="settings-card">
+                        <div class="settings-row action-row">
+                            <div>
+                                <span>Delete Account</span>
+                                <p>Permanently delete your account and stored keys.</p>
+                            </div>
+                            <button id="deleteAccountBtn" class="button danger-btn">
+                                Delete
+                                <i class="ri-delete-bin-6-line r-icon"></i>
+                            </button>
+                        </div>
                     </div>
-
                 </div>
-
-
             </div>
         </section>
-
     </main>
 
-
-    <footer class="footer">
-        <div class="container is-max-desktop has-text-centered">
-            <p class="has-text-weight-semibold">CYPHR</p>
-            <p class="is-size-7">© 2026 CYPHR. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="container is-max-desktop">
+            <div class="footer-main">
+                <div><strong>CYPHR</strong><span>Simple API key storage.</span></div>
+                <div class="tech-stack">
+                    <span>Built with</span>
+                    <i class="ri-nodejs-fill" title="Node.js"></i>
+                    <i class="devicon-cloudflare-plain colored" title="Cloudflare"></i>
+                    <img src="https://hono.dev/images/logo.png" class="tech-stack-img" alt="Hono" title="Hono">
+                    <i class="devicon-supabase-plain colored" title="Supabase"></i>
+                    <img src="https://neon.tech/brand/neon-logomark-dark-color.svg" class="tech-stack-img" alt="Neon"
+                        title="Neon">
+                </div>
+            </div>
+            <div class="footer-meta">
+                <div>
+                    <span><i class="ri-shield-check-line"></i> AES-256-GCM</span>
+                    <span><i class="ri-git-repository-line"></i> Open source</span>
+                    <span><i class="ri-global-line"></i> Edge-ready</span>
+                </div>
+                <span>© 2026 CYPHR. All rights reserved.</span>
+            </div>
         </div>
     </footer>
 
-    <script src="./assets/JS/script.js" type="module"></script>
-    <script src="./assets/JS/navbar.js" type="module" defer></script>
-    <script src="./assets/JS/alert_modal.js" type="module" defer></script>
-    <script src="./assets/JS/settings.js" type="module" defer></script>
-
+    <script src="./assets/JS/settings.js" type="module"></script>
 </body>
 
 </html>

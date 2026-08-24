@@ -1,54 +1,131 @@
-.login-hero {
-    margin-top: 8rem;
-    padding: 0 1.5rem;
+.login-section {
+    padding: 7rem 1rem 5rem;
 }
 
-.title {
-    color: var(--secondary-accent-color) !important;
-    letter-spacing: -1px;
-}
-
-.subtitle {
-    color: #888 !important;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.login-box {
-    max-width: 400px;
+.login-content {
+    width: min(100%, 440px);
     margin: 0 auto;
 }
 
-.github-btn {
-    background-color: transparent !important;
-    color: var(--secondary-accent-color) !important;
-    border: 1px solid #333 !important;
-    font-weight: 600;
-    transition: all 0.3s ease;
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 4rem;
+    color: var(--text-dim);
+    font: 0.7rem "JetBrains Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--text);
+}
+
+.login-heading {
+    margin-bottom: 2.5rem;
+}
+
+.login-heading>span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font: 0.7rem "JetBrains Mono", monospace;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.login-heading h1 {
+    margin: 0;
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.07em;
+    line-height: 0.95;
+}
+
+.login-heading h1 em {
+    color: var(--primary-accent-color);
+    font-style: normal;
+}
+
+.login-heading p {
+    max-width: 360px;
+    margin-top: 1.25rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.auth-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.auth-button {
+    width: 100%;
     height: 3.5rem !important;
-    font-size: 1.5rem;
+    justify-content: center;
+    gap: 0.65rem;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    background: var(--surface-raised) !important;
+    color: var(--text) !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
 }
 
-.github-btn:hover {
-    background-color: var(--secondary-accent-color) !important;
-    color: #000 !important;
-    border-color: var(--secondary-accent-color) !important;
+.auth-button i {
+    font-size: 1.2rem;
+}
+
+.auth-button:hover {
+    border-color: var(--primary-accent-color) !important;
+    background: var(--surface) !important;
+    color: var(--text) !important;
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
 }
 
-.github-btn .icon {
-    margin-right: 0.5rem;
-    font-size: 1.4rem;
+.auth-button:active {
+    transform: translateY(0);
 }
 
-@media(max-width: 768px) {
-    .login-hero {
-        margin-top: 4rem;
+.terms {
+    margin-top: 1.5rem;
+    color: var(--text-dim);
+    font: 0.65rem "JetBrains Mono", monospace;
+    line-height: 1.7;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .login-section {
+        padding-top: 4.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-section {
+        padding-top: 3rem;
     }
 
-    .github-btn{
-        font-size: 1rem;
+    .login-content {
+        width: 100%;
+    }
+
+    .back-link {
+        margin-bottom: 3rem;
+    }
+
+    .login-heading {
+        margin-bottom: 2rem;
+    }
+
+    .login-heading h1 {
+        font-size: clamp(2.8rem, 14vw, 4rem);
     }
 }

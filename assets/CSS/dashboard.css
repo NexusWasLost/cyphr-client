@@ -1,10 +1,11 @@
 .user-profile {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid #333;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
     overflow: hidden;
-    background: #0000;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface);
 }
 
 .user-profile img {
@@ -14,144 +15,302 @@
     object-fit: cover;
 }
 
-/* --- TABLE REFINEMENT --- */
-.table {
-    background-color: transparent !important;
-    color: var(--secondary-accent-color) !important;
+.dashboard-header-section {
+    padding-top: 3rem !important;
+    padding-bottom: 2rem !important;
 }
 
-/* Bulma's .is-hoverable uses a specific background color, we just override it to be subtle */
-.table.is-hoverable tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.05) !important;
+.dashboard-header,
+.profile-section,
+.key-counter {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-header {
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.profile-info {
+    margin-left: 1rem;
+}
+
+.profile-label,
+.vault-eyebrow,
+.counter-label {
+    display: block;
+    color: var(--text-dim);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+}
+
+.profile-info h1,
+.vault-heading h2 {
+    color: var(--text);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.profile-info h1 {
+    margin: 0.2rem 0 0.15rem;
+}
+
+.profile-info p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.key-counter {
+    gap: 0.3rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+}
+
+.key-counter strong {
+    margin-left: 0.4rem;
+    color: var(--text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.vault-section {
+    padding-top: 1rem !important;
+    padding-bottom: 3rem !important;
+}
+
+.vault-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.vault-heading h2 {
+    margin: 0.25rem 0 0;
+}
+
+.primary-button {
+    height: 2.5rem !important;
+    padding: 0 1rem !important;
+    border-radius: 7px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600;
+}
+
+.primary-button .icon {
+    margin-right: 0.25rem;
+}
+
+.vault-container {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: transparent;
+    color: var(--text);
+}
+
+.table thead {
+    background: var(--surface-raised);
 }
 
 .table thead th {
-    color: #888 !important;
-    border-bottom: 1px solid #222 !important;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
+    padding: 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.table thead th:last-child {
+    text-align: right;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s ease;
+}
+
+.table tbody tr:last-child {
+    border-bottom: 0;
+}
+
+.table tbody tr:hover {
+    background: var(--surface-raised);
 }
 
 .table td {
-    border-bottom: 1px solid #1a1a1a !important;
-    padding: 1.25rem 0.75rem !important;
-    vertical-align: middle !important;
+    padding: 1.5rem 0.9rem;
+    border: 0;
+    vertical-align: middle;
 }
 
-/* --- ACTION BUTTONS (IDs) --- */
-.table .buttons .button {
-    min-width: 100px;
-    height: 2.2rem;
+.table td:first-child {
+    color: var(--text);
     font-weight: 600;
-    font-size: 0.75rem !important;
-    background-color: transparent !important;
-    border: 1px solid #333 !important;
-    color: var(--secondary-accent-color) !important;
 }
 
-#btn-copy {
+.table td:nth-child(2) {
+    color: var(--text-muted);
+}
+
+.table td:nth-child(2) code {
+    padding: 0.25rem 0.45rem;
+    border-radius: 4px;
+    background: var(--surface-raised);
+    color: var(--text-muted);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+}
+
+.table td:last-child {
+    text-align: right;
+}
+
+.table .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.table .buttons .button {
+    min-width: 72px;
+    height: 2.2rem;
+    padding: 0 0.8rem;
+    border: 1px solid var(--border) !important;
+    border-radius: 6px;
+    background: transparent !important;
+    color: var(--text-muted) !important;
+    font-size: 0.8rem !important;
+    font-weight: 600;
+}
+
+#btn-copy:hover,
+.btn-copy:hover {
     border-color: var(--primary-accent-color) !important;
-    color: var(--primary-accent-color) !important;
+    background: var(--primary-accent-color) !important;
+    color: var(--button-text) !important;
 }
 
-#btn-copy:hover {
-    background-color: var(--primary-accent-color) !important;
-    color: #000 !important;
+#btn-edit:hover,
+.btn-edit:hover {
+    border-color: var(--text-muted) !important;
+    background: var(--surface-raised) !important;
+    color: var(--text) !important;
 }
 
-#btn-edit:hover {
-    border-color: #eee !important;
-    color: #eee !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-#btn-del:hover {
+#btn-del:hover,
+.btn-del:hover {
     border-color: #ff3860 !important;
+    background: rgba(255, 56, 96, 0.1) !important;
     color: #ff3860 !important;
-    background-color: rgba(255, 56, 96, 0.1) !important;
 }
 
-#btn-copy, #btn-edit, #btn-del {
-    font-size: 1rem !important;
+.loader-row td,
+.has-no-key-row td {
+    border-bottom: 0 !important;
 }
 
-/* MODALS */
-.modal-card-foot .button:not(:last-child) {
-    margin-right: 0.75rem !important;
+.loader-wrapper .loader {
+    border-color: var(--border);
+    border-right-color: var(--primary-accent-color);
 }
 
-.modal-card-head,
-.modal-card-foot {
-    background-color: #111 !important;
-    border: none !important;
-}
-
-.modal-card-body {
-    background-color: #0a0a0a !important;
-    color: var(--secondary-accent-color) !important;
-}
-
-.modal-card-title {
-    color: var(--secondary-accent-color) !important;
-    font-weight: bold;
-}
-
-.modal .label {
-    color: #888 !important;
-}
-
-.modal .input,
-.modal .textarea {
-    background-color: #1a1a1a !important;
-    resize: none;
-    color: var(--secondary-accent-color) !important;
-}
-
-.modal .input:focus,
-.modal .textarea:focus {
-    border: 1px solid var(--primary-accent-color) !important;
-}
-
-/* --- YOUR RESPONSIVE FLEX LOGIC --- */
+/* Mobile */
 @media screen and (max-width: 768px) {
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .key-counter {
+        align-self: stretch;
+        justify-content: space-between;
+    }
+
+    .vault-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .vault-heading .button {
+        width: 100%;
+    }
+
+    .table-container {
+        overflow-x: visible;
+    }
+
+    .table,
+    .table tbody {
+        display: block;
+    }
+
     .table thead {
         display: none;
     }
 
-    .table tr {
+    .table tbody tr {
         display: flex;
         flex-wrap: wrap;
         padding: 1.5rem 0.5rem;
-        border-bottom: 1px solid #222;
+    }
+
+    .table td {
+        display: block;
+        padding: 0.65rem 0.75rem;
     }
 
     .table td:nth-child(1) {
         flex: 1;
-        border: none !important;
-        font-weight: bold;
+        min-width: 0;
     }
 
     .table td:nth-child(2) {
         flex: 0 auto;
-        text-align: right !important;
-        border: none !important;
+        text-align: right;
     }
 
     .table td:last-child {
-        width: 100% !important;
-        margin-top: 1rem;
-        border-bottom: none !important;
+        width: 100%;
+        margin-top: 0.5rem;
+        text-align: left;
     }
 
     .table .buttons {
-        display: flex;
         width: 100%;
-        gap: 10px;
+        gap: 0.5rem;
     }
 
     .table .buttons .button {
         flex: 1;
-        margin: 0 !important;
+        min-width: 0;
     }
 }

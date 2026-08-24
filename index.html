@@ -8,159 +8,155 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./assets/images/favicon/site.webmanifest">
-    <title>Cyphr</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <title>CYPHR — Simple API Key Storage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
     <link rel="stylesheet" href="./assets/CSS/root.css">
     <link rel="stylesheet" href="./assets/CSS/style.css">
 </head>
 
 <body>
-
     <header>
-        <nav class="navbar pt-1">
+        <nav class="navbar">
             <div class="container is-max-desktop">
-
-                <div class="navbar-brand">
-                    <a id="brand-name" class="navbar-item has-text-weight-bold" href="/">CYPHR</a>
-                </div>
-
+                <a id="brand-name" class="navbar-item" href="/">CYPHR</a>
+                <input type="checkbox" id="nav-toggle">
+                <label for="nav-toggle" class="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </label>
                 <div class="navbar-menu">
                     <div class="navbar-end">
-
-                        <a class="navbar-item" href="dashboard.html">
-                            My Keys
-                        </a>
-
-                        <div class="navbar-item">
-                            <a href="login.html"><button class="button is-dark">Login</button></a>
-                        </div>
-
+                        <a class="navbar-item nav-link" href="#features">Features</a>
+                        <a class="navbar-item nav-link" href="dashboard.html">My Keys</a>
+                        <a href="login.html" class="nav-link nav-button">Login</a>
                     </div>
                 </div>
-
             </div>
         </nav>
     </header>
 
-
     <main>
-        <section class="section hero-top">
+        <section class="section hero-section">
             <div class="container is-max-desktop">
-                <div class="columns is-vcentered px-4">
-                    <div class="column is-8">
-                        <h1 class="title is-size-1-desktop is-size-2-mobile has-text-weight-bold mb-5">
-                            Simple API Key Storage <br>
-                            <span style="color: var(--primary-accent-color);">for Developers</span>
-                        </h1>
-                        <p class="subtitle is-5 has-text-grey-light mb-6" style="margin: 0; max-width: 500px;">
-                            A high-performance, encrypted vault for your service keys.
-                            Group your secrets and never lose credentials again.
-                        </p>
+                <div class="columns is-vcentered is-variable is-8">
+                    <div class="column is-6">
+                        <span class="eyebrow"><i></i> API key management</span>
+                        <h1 class="hero-title">Your secrets.<br><span>Simplified.</span></h1>
+                        <p class="hero-copy">Store, organize and manage your API keys in one secure, beautifully simple
+                            vault.</p>
                         <div class="buttons">
-                            <a href="login.html"><button class="button is-dark is-medium px-5"
-                                style="background-color: var(--primary-accent-color); border: none;">Get
-                                Started</button></a>
-                            <a href="https://github.com/7Cyphr" target="_blank"><button class="button is-ghost is-medium has-text-white">About</button></a>
+                            <a href="login.html" class="button primary-button">Get started <i
+                                    class="ri-arrow-right-line"></i></a>
+                            <a href="#features" class="button is-ghost text-button">Learn more <i
+                                    class="ri-arrow-down-line"></i></a>
+                        </div>
+                        <p class="open-source"><i class="ri-git-repository-line"></i> Open source by design</p>
+                    </div>
+                    <div class="column is-5 is-offset-1">
+                        <div class="vault">
+                            <div class="vault-header">
+                                <strong>CYPHR</strong>
+                                <span><i></i> Secure</span>
+                            </div>
+                            <div class="vault-body">
+                                <div class="vault-title">
+                                    <div><small>YOUR KEYS</small><strong>API credentials</strong></div>
+                                    <button><i class="ri-add-line"></i></button>
+                                </div>
+                                <div class="key">
+                                    <span class="key-icon"><i class="ri-openai-fill"></i></span>
+                                    <div><strong>OpenAI</strong><small>sk-••••••••••••••••••••</small></div>
+                                    <i class="ri-more-2-fill"></i>
+                                </div>
+                                <div class="key">
+                                    <span class="key-icon"><i class="ri-bank-card-line"></i></span>
+                                    <div><strong>Stripe</strong><small>sk-••••••••••••••••••••</small></div>
+                                    <i class="ri-more-2-fill"></i>
+                                </div>
+                                <div class="key">
+                                    <span class="key-icon"><i class="ri-github-fill"></i></span>
+                                    <div><strong>GitHub</strong><small>ghp-••••••••••••••••••</small></div>
+                                    <i class="ri-more-2-fill"></i>
+                                </div>
+                                <div class="key">
+                                    <span class="key-icon"><i class="ri-google-fill"></i></span>
+                                    <div><strong>Gemini</strong><small>AIza••••••••••••••••••</small></div>
+                                    <i class="ri-more-2-fill"></i>
+                                </div>
+                            </div>
+                            <div class="vault-footer">
+                                <span><i class="ri-lock-2-line"></i> Encrypted at the edge</span>
+                                <span>4 keys</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section py-0">
+        <section id="features" class="section features-section">
             <div class="container is-max-desktop">
-                <div class="columns is-vcentered px-4">
-
-                    <div class="column is-7">
-                        <div class="py-4">
-                            <div class="is-flex is-align-items-start mb-5">
-                                <span class="spec-number">01</span>
-                                <div>
-                                    <h3 class="has-text-weight-bold is-size-5">AES protection at the Edge.</h3>
-                                    <p class="is-size-6 has-text-grey">Every secret encrypted at the edge using AES-256-GCM before it ever touches disk.</p>
-                                </div>
-                            </div>
-
-                            <div class="is-flex is-align-items-start mb-5">
-                                <span class="spec-number">02</span>
-                                <div>
-                                    <h3 class="has-text-weight-bold is-size-5">Fully Open Source</h3>
-                                    <p class="is-size-6 has-text-grey">No black boxes. The entire codebase is public so you can verify exactly how your data is handled.</p>
-                                </div>
-                            </div>
-
-                            <div class="is-flex is-align-items-start">
-                                <span class="spec-number">03</span>
-                                <div>
-                                    <h3 class="has-text-weight-bold is-size-5">Clean Management</h3>
-                                    <p class="is-size-6 has-text-grey">A minimal dashboard designed to help you manage secrets and get back to building in seconds.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="column is-4 is-offset-1">
-                        <div class="status-card">
-                            <p class="is-size-7 is-uppercase has-text-grey mb-3" style="letter-spacing: 2px;">Network
-                                Status</p>
-                            <div class="is-flex is-align-items-center mb-3">
-                                <div class="status-dot"></div>
-                                <span class="is-size-6 has-text-weight-semibold">Systems Operational</span>
-                            </div>
-                            <p class="is-size-7 has-text-grey">Your encrypted vault is currently synced across all edge
-                                locations.</p>
-                        </div>
-                    </div>
-
+                <div class="section-heading">
+                    <span>WHY CYPHR</span>
+                    <h2>Everything you need. <em>Nothing you don't.</em></h2>
                 </div>
-            </div>
-        </section>
-
-        <section class="section py-5 mt-6 mb-5">
-            <div class="container is-max-desktop has-text-centered">
-                <p class="is-uppercase is-size-7 has-text-grey mb-5" style="letter-spacing: 2px; opacity: 0.6;">
-                    Built for the Edge
-                </p>
-                <div class="level is-mobile tech-bar">
-
-                    <div class="level-item">
-                        <i class="ri-nodejs-fill" title="Node.js"></i>
+                <div class="columns is-variable is-4">
+                    <div class="column">
+                        <article class="feature-card">
+                            <span>01</span>
+                            <i class="ri-lock-password-line"></i>
+                            <h3>Encrypted before storage</h3>
+                            <p>Secrets are encrypted using AES-256-GCM before they are persisted.</p>
+                        </article>
                     </div>
-
-                    <div class="level-item">
-                        <i class="devicon-cloudflare-plain colored" title="Cloudflare"></i>
+                    <div class="column">
+                        <article class="feature-card">
+                            <span>02</span>
+                            <i class="ri-code-s-slash-line"></i>
+                            <h3>Nothing hidden</h3>
+                            <p>CYPHR is open source, so you can inspect exactly how your credentials are handled.</p>
+                        </article>
                     </div>
-
-                    <div class="level-item">
-                        <img src="https://hono.dev/images/logo.png" class="tech-stack-img" alt="Hono" title="Hono" />
+                    <div class="column">
+                        <article class="feature-card">
+                            <span>03</span>
+                            <i class="ri-layout-line"></i>
+                            <h3>Stay out of your way</h3>
+                            <p>A focused interface for managing credentials without another complicated dashboard.</p>
+                        </article>
                     </div>
-
-                    <div class="level-item">
-                        <i class="devicon-supabase-plain colored" title="Supabase"></i>
-                    </div>
-
-                    <div class="level-item">
-                        <img src="https://neon.tech/brand/neon-logomark-dark-color.svg" class="tech-stack-img"
-                            alt="Neon" title="Neon" />
-                    </div>
-
                 </div>
             </div>
         </section>
     </main>
 
-
-    <footer class="footer">
-        <div class="container is-max-desktop has-text-centered">
-
-            <p class="has-text-weight-semibold">CYPHR</p>
-            <p class="is-size-7">© 2026 CYPHR. All rights reserved.</p>
-
+    <footer class="site-footer">
+        <div class="container is-max-desktop">
+            <div class="footer-main">
+                <div>
+                    <strong>CYPHR</strong>
+                    <span>Simple API key storage.</span>
+                </div>
+                <div class="tech-stack">
+                    <span>Built with</span>
+                    <i class="ri-nodejs-fill" title="Node.js"></i>
+                    <i class="devicon-cloudflare-plain colored" title="Cloudflare"></i>
+                    <img src="https://hono.dev/images/logo.png" class="tech-stack-img" alt="Hono" title="Hono">
+                    <i class="devicon-supabase-plain colored" title="Supabase"></i>
+                    <img src="https://neon.tech/brand/neon-logomark-dark-color.svg" class="tech-stack-img" alt="Neon"
+                        title="Neon">
+                </div>
+            </div>
+            <div class="footer-meta">
+                <div>
+                    <span><i class="ri-shield-check-line"></i> AES-256-GCM</span>
+                    <span><i class="ri-git-repository-line"></i> Open source</span>
+                    <span><i class="ri-global-line"></i> Edge-ready</span>
+                </div>
+                <span>© 2026 CYPHR. All rights reserved.</span>
+            </div>
         </div>
     </footer>
-
 </body>
 
 </html>

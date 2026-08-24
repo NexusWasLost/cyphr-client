@@ -8,82 +8,82 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./assets/images/favicon/site.webmanifest">
-    <title>Dashboard | Cyphr</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <title>Dashboard | CYPHR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
     <link rel="stylesheet" href="./assets/CSS/root.css">
+    <link rel="stylesheet" href="./assets/CSS/modal.css">
     <link rel="stylesheet" href="./assets/CSS/dashboard.css">
 </head>
 
 <body>
-
     <header>
-        <nav class="navbar pt-1 mb-1">
+        <nav class="navbar">
             <div class="container is-max-desktop">
-                <div class="navbar-brand">
-                    <a id="brand-name" class="navbar-item has-text-weight-bold" href="/">CYPHR</a>
-                </div>
+                <a id="brand-name" class="navbar-item" href="/">CYPHR</a>
+                <input type="checkbox" id="nav-toggle">
+                <label for="nav-toggle" class="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </label>
                 <div class="navbar-menu">
                     <div class="navbar-end">
-                        <div class="navbar-item">
-                            <a class="navbar-item" href="/settings.html">Settings</a>
-                        </div>
-                        <div class="navbar-item">
-                            <button class="button is-dark">Logout</button>
-                        </div>
-
+                        <a class="navbar-item nav-link" href="/">Home</a>
+                        <a class="navbar-item nav-link" href="settings.html">Settings</a>
+                        <a href="#" class="nav-link nav-button">Logout</a>
                     </div>
                 </div>
-
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="section pt-5 pb-3">
+        <section class="section dashboard-header-section">
             <div class="container is-max-desktop">
-                <div class="is-flex is-align-items-center mb-5">
-                    <div class="user-profile mr-4">
-                        <img id="userAvatar" src="" alt="Profile">
+                <div class="dashboard-header">
+                    <div class="profile-section">
+                        <div class="user-profile">
+                            <img id="userAvatar" src="" alt="Profile">
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-label">SECURE VAULT</span>
+                            <h1>Your API keys</h1>
+                            <p>Manage your credentials from one place.</p>
+                        </div>
                     </div>
-
-                    <div>
-                        <p class="title is-5 has-text-white m-0">
-                        <p class="is-size-6 has-text-grey-light" style="font-weight: 400;">Total Keys</p>
-                        <p id="totalKeyCount"></p>
-                        </p>
+                    <div class="key-counter">
+                        <span class="counter-label">TOTAL KEYS</span>
+                        <strong id="totalKeyCount">0</strong>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="section pt-3">
+
+        <section class="section vault-section">
             <div class="container is-max-desktop">
-
-                <div class="level is-mobile mb-6">
-                    <div class="level-left">
-                        <h2 class="subtitle is-4 has-text-weight-semibold m-0">Secret Vault</h2>
+                <div class="vault-heading">
+                    <div>
+                        <span class="vault-eyebrow">YOUR CREDENTIALS</span>
+                        <h2>Secret Vault</h2>
                     </div>
-                    <div class="level-right">
-                        <button class="button is-dark" id="openAddModal">
-                            <span class="icon"><i class="ri-add-line"></i></span>
-                            <span>Add Key</span>
-                        </button>
+                    <button class="button primary-button" id="openAddModal" type="button">
+                        <span class="icon"><i class="ri-add-line"></i></span>
+                        <span>Add Key</span>
+                    </button>
+                </div>
+                <div class="vault-container">
+                    <div class="table-container">
+                        <table class="table is-fullwidth is-hoverable">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Identifier</th>
+                                    <th class="has-text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="keysTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
-
-                <div class="table-container">
-                    <table class="table is-fullwidth is-hoverable">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th>Identifier</th>
-                                <th class="has-text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="keysTableBody"></tbody>
-                    </table>
-                </div>
-
             </div>
         </section>
     </main>
@@ -123,6 +123,7 @@
             </footer>
         </div>
     </div>
+
     <div class="modal" id="editKeyModal">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -130,25 +131,20 @@
                 <p class="modal-card-title">Edit Key</p>
                 <button class="delete" aria-label="close"></button>
             </header>
-
             <section class="modal-card-body">
-
                 <div class="field">
                     <label class="label">Key Label</label>
                     <div class="control">
                         <input class="input" id="editKeyLabel" type="text" required>
                     </div>
                 </div>
-
                 <div class="field">
                     <label class="label">Service Name</label>
                     <div class="control">
                         <input class="input" id="editServiceName" type="text" required>
                     </div>
                 </div>
-
             </section>
-
             <footer class="modal-card-foot is-justify-content-flex-end">
                 <button class="button is-light mr-2 btn-edit-cancel">Cancel</button>
                 <button class="button is-dark btn-save-modal" id="updateKeyBtn" disabled>Save Changes</button>
@@ -156,10 +152,28 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container is-max-desktop has-text-centered">
-            <p class="has-text-weight-semibold">CYPHR</p>
-            <p class="is-size-7">© 2026 CYPHR. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="container is-max-desktop">
+            <div class="footer-main">
+                <div><strong>CYPHR</strong><span>Simple API key storage.</span></div>
+                <div class="tech-stack">
+                    <span>Built with</span>
+                    <i class="ri-nodejs-fill" title="Node.js"></i>
+                    <i class="devicon-cloudflare-plain colored" title="Cloudflare"></i>
+                    <img src="https://hono.dev/images/logo.png" class="tech-stack-img" alt="Hono" title="Hono">
+                    <i class="devicon-supabase-plain colored" title="Supabase"></i>
+                    <img src="https://neon.tech/brand/neon-logomark-dark-color.svg" class="tech-stack-img" alt="Neon"
+                        title="Neon">
+                </div>
+            </div>
+            <div class="footer-meta">
+                <div>
+                    <span><i class="ri-shield-check-line"></i> AES-256-GCM</span>
+                    <span><i class="ri-git-repository-line"></i> Open source</span>
+                    <span><i class="ri-global-line"></i> Edge-ready</span>
+                </div>
+                <span>© 2026 CYPHR. All rights reserved.</span>
+            </div>
         </div>
     </footer>
 
@@ -167,7 +181,6 @@
     <script src="./assets/JS/navbar.js" type="module" defer></script>
     <script src="./assets/JS/alert_modal.js" type="module" defer></script>
     <script src="./assets/JS/dashboard.js" type="module" defer></script>
-
 </body>
 
 </html>

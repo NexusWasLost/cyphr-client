@@ -1,45 +1,176 @@
-.settings-section{
-    margin-bottom:3rem;
+.settings-page {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 
-.settings-title{
-    font-size:0.85rem;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    color:#888;
-    margin-bottom:1rem;
+.settings-header {
+    margin-bottom: 3.5rem;
 }
 
-.settings-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:1rem 0;
-    border-bottom:1px solid #1a1a1a;
+.settings-eyebrow {
+    display: block;
+    margin-bottom: .35rem;
+    color: var(--text-dim);
+    font-family: "JetBrains Mono", monospace;
+    font-size: .68rem;
+    font-weight: 500;
+    letter-spacing: .08em;
 }
 
-.settings-row:last-child{
-    border-bottom:none;
+.settings-header h1 {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -.04em;
 }
 
-.action-row button{
-    min-width:110px;
+.settings-header p {
+    margin-top: .4rem;
+    color: var(--text-muted);
+    font-size: .9rem;
 }
 
-.button{
-    font-size: 1rem !important;
+.settings-section {
+    margin-bottom: 3rem;
 }
 
-.danger-title{
-    color:#ff6b6b;
+.settings-title {
+    margin-bottom: 1rem;
+    color: var(--text-dim);
+    font-family: "JetBrains Mono", monospace;
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
 }
 
-.danger-btn{
-    background-color:#3a1a1a !important;
-    color:white !important;
-    border:none !important;
+.settings-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
 }
 
-.danger-btn:hover{
-    background-color:#4a2020 !important;
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-height: 4.5rem;
+    padding: 1.15rem 1.25rem;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--text);
+    font-size: .9rem;
+}
+
+.settings-row:last-child {
+    border-bottom: 0;
+}
+
+.settings-value {
+    color: var(--text-muted);
+    font-family: "JetBrains Mono", monospace;
+    font-size: .78rem;
+    text-align: right;
+}
+
+.action-row>div span {
+    display: block;
+    font-weight: 600;
+}
+
+.action-row>div p {
+    margin-top: .25rem;
+    color: var(--text-dim);
+    font-size: .78rem;
+}
+
+.settings-button,
+.danger-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 105px;
+    height: 2.4rem;
+    padding: 0 1rem;
+    border-radius: 6px;
+    font-size: .8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.settings-button {
+    background: var(--surface-hover, #1f242d);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.settings-button:hover {
+    background: var(--border-soft, #2e3545);
+    color: var(--text);
+}
+
+.r-icon {
+    margin-left: .35rem;
+}
+
+.danger-title {
+    color: #ff6b6b;
+}
+
+.danger-zone .settings-card {
+    border-color: rgba(255, 107, 107, .18);
+}
+
+.danger-btn {
+    background: rgba(255, 56, 96, .1);
+    border: 1px solid rgba(255, 56, 96, .25);
+    color: #ff6b6b;
+}
+
+.danger-btn:hover {
+    background: rgba(255, 56, 96, .18);
+    border-color: #ff3860;
+    color: #ff6b6b;
+}
+
+@media (max-width: 768px) {
+    .settings-page {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .settings-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .settings-header h1 {
+        font-size: 1.55rem;
+    }
+
+    .settings-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .8rem;
+        min-height: auto;
+        padding: 1.15rem;
+    }
+
+    .settings-value {
+        max-width: 100%;
+        text-align: left;
+        overflow-wrap: anywhere;
+    }
+
+    .action-row {
+        align-items: stretch;
+    }
+
+    .action-row .button,
+    .action-row .settings-button,
+    .action-row .danger-btn {
+        width: 100%;
+    }
 }

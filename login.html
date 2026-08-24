@@ -6,26 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./assets/images/favicon/site.webmanifest">
-    <title>Login | Cyphr</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <title>Login | CYPHR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
     <link rel="stylesheet" href="./assets/CSS/root.css">
     <link rel="stylesheet" href="./assets/CSS/login.css">
 </head>
 
 <body>
-
     <header>
-        <nav class="navbar pt-1">
+        <nav class="navbar">
             <div class="container is-max-desktop">
-                <div class="navbar-brand">
-                    <a id="brand-name" class="navbar-item has-text-weight-bold" href="/">CYPHR</a>
-                </div>
+                <a id="brand-name" class="navbar-item" href="/">CYPHR</a>
+                <input type="checkbox" id="nav-toggle">
+                <label for="nav-toggle" class="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </label>
                 <div class="navbar-menu">
                     <div class="navbar-end">
-                        <a class="navbar-item" href="dashboard.html">My Keys</a>
+                        <a class="navbar-item nav-link" href="dashboard.html">My Keys</a>
                     </div>
                 </div>
             </div>
@@ -33,48 +33,70 @@
     </header>
 
     <main>
-        <section class="section login-hero">
-            <div class="container">
-                <div class="columns is-centered">
-                    <div class="column is-4-desktop is-6-tablet">
+        <section class="section login-section">
+            <div class="container is-max-desktop">
+                <div class="login-content">
 
-                        <div class="has-text-centered mb-6">
-                            <a href="/" class="is-size-7 is-uppercase has-text-grey" style="letter-spacing: 2px;">
-                                <i class="ri-arrow-left-line"></i> Back to Home
-                            </a>
-                            <h1 class="title is-2 mt-4">Welcome Back</h1>
-                            <p class="subtitle is-6">
-                                Secure access to your encrypted vault.
-                            </p>
-                        </div>
+                    <a href="/" class="back-link">
+                        <i class="ri-arrow-left-line"></i>
+                        Back to Home
+                    </a>
 
-                        <div class="login-box">
-                            <button class="button is-medium is-fullwidth github-btn" id="githubSignIn">
-                                <span class="icon"><i class="ri-github-fill"></i></span>
-                                <span>Continue with GitHub</span>
-                            </button>
-
-                            <p class="is-size-7 has-text-centered mt-5 has-text-grey">
-                                By signing in, you agree to our terms of service and privacy policy.
-                            </p>
-                        </div>
-
+                    <div class="login-heading">
+                        <span>WELCOME BACK</span>
+                        <h1>Access your<br><em>vault.</em></h1>
+                        <p>Access your encrypted vault and get back to building.</p>
                     </div>
+
+                    <div class="auth-options">
+                        <button class="button auth-button" id="githubSignIn" type="button">
+                            <i class="ri-github-fill"></i>
+                            <span>Continue with GitHub</span>
+                        </button>
+                    </div>
+
+                    <p class="terms">
+                        By signing in, you agree to our terms of service and privacy policy.
+                    </p>
+
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container is-max-desktop has-text-centered">
-            <p class="has-text-weight-semibold">CYPHR</p>
-            <p class="is-size-7">© 2026 CYPHR. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="container is-max-desktop">
+            <div class="footer-main">
+                <div>
+                    <strong>CYPHR</strong>
+                    <span>Simple API key storage.</span>
+                </div>
+
+                <div class="tech-stack">
+                    <span>Built with</span>
+                    <i class="ri-nodejs-fill" title="Node.js"></i>
+                    <i class="devicon-cloudflare-plain colored" title="Cloudflare"></i>
+                    <img src="https://hono.dev/images/logo.png" class="tech-stack-img" alt="Hono" title="Hono">
+                    <i class="devicon-supabase-plain colored" title="Supabase"></i>
+                    <img src="https://neon.tech/brand/neon-logomark-dark-color.svg" class="tech-stack-img" alt="Neon"
+                        title="Neon">
+                </div>
+            </div>
+
+            <div class="footer-meta">
+                <div>
+                    <span><i class="ri-shield-check-line"></i> AES-256-GCM</span>
+                    <span><i class="ri-git-repository-line"></i> Open source</span>
+                    <span><i class="ri-global-line"></i> Edge-ready</span>
+                </div>
+
+                <span>© 2026 CYPHR. All rights reserved.</span>
+            </div>
         </div>
     </footer>
 
     <script src="./assets/JS/script.js" type="module"></script>
     <script src="./assets/JS/login.js" type="module" defer></script>
-
 </body>
 
 </html>

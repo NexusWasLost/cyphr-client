@@ -1,0 +1,293 @@
+.modal {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9999 !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.25rem !important;
+}
+
+.modal.is-active {
+    display: flex !important;
+}
+
+.modal-background {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 10000 !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    backdrop-filter: blur(4px);
+}
+
+.modal-card {
+    position: relative !important;
+    z-index: 10001 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 640px !important;
+    max-height: calc(100vh - 2.5rem) !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 9px !important;
+    background: var(--surface) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+.modal-card-head,
+.modal-card-foot {
+    flex-shrink: 0 !important;
+    background: var(--surface-raised) !important;
+}
+
+.modal-card-head {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 1.25rem 1.5rem !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+.modal-card-title {
+    margin: 0 !important;
+    color: var(--text) !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+}
+
+.modal-card-body {
+    min-height: 0;
+    overflow-y: auto !important;
+    padding: 1.5rem !important;
+    background: var(--surface) !important;
+    color: var(--text) !important;
+}
+
+.modal-card-foot {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 0.75rem !important;
+    padding: 1rem 1.5rem !important;
+    border-top: 1px solid var(--border) !important;
+}
+
+.modal-card-head .delete,
+.modal-content .delete {
+    position: relative !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    margin-left: 1rem !important;
+    padding: 0 !important;
+    flex: 0 0 auto !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: transparent !important;
+    color: var(--text-muted) !important;
+    cursor: pointer;
+}
+
+.modal-card-head .delete::before,
+.modal-card-head .delete::after,
+.modal-content .delete::before,
+.modal-content .delete::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 1px;
+    content: "";
+    background: currentColor;
+    border-radius: 1px;
+}
+
+.modal-card-head .delete::before,
+.modal-content .delete::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal-card-head .delete::after,
+.modal-content .delete::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.modal-card-head .delete:hover,
+.modal-content .delete:hover {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+}
+
+.modal .field {
+    margin-bottom: 1rem;
+}
+
+.modal .field:last-child {
+    margin-bottom: 0;
+}
+
+.modal .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted) !important;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.modal .input,
+.modal .textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: calc(0.5em - 1px) calc(0.75em - 1px);
+    border: 1px solid var(--input-border) !important;
+    border-radius: 6px !important;
+    outline: 0;
+    background: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    box-shadow: none !important;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal .input {
+    height: 2.5em;
+}
+
+.modal .textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.modal .input:hover,
+.modal .textarea:hover {
+    border-color: var(--text-muted) !important;
+}
+
+.modal .input:focus,
+.modal .textarea:focus {
+    border-color: var(--input-focus) !important;
+    box-shadow: 0 0 0 1px var(--input-focus) !important;
+}
+
+.modal .input::placeholder,
+.modal .textarea::placeholder {
+    color: var(--input-placeholder) !important;
+    opacity: 1;
+}
+
+.modal-card-foot .button {
+    margin: 0 !important;
+    min-height: 2.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-edit-cancel,
+.modal-card-foot .button.is-light,
+.modal-card-foot .button:not(.btn-save-modal):not(.btn-del-danger):not(.btn-del) {
+    border: 1px solid var(--border) !important;
+    background: transparent !important;
+    color: var(--text-muted) !important;
+}
+
+.btn-edit-cancel:hover,
+.modal-card-foot .button.is-light:hover,
+.modal-card-foot .button:not(.btn-save-modal):not(.btn-del-danger):not(.btn-del):hover {
+    border-color: var(--text-muted) !important;
+    background: var(--surface-raised) !important;
+    color: var(--text) !important;
+}
+
+.btn-save-modal {
+    background: var(--button-bg) !important;
+    border: 0 !important;
+    color: var(--button-text) !important;
+    font-weight: 600 !important;
+}
+
+.btn-save-modal:hover {
+    background: var(--button-hover) !important;
+    color: var(--button-text) !important;
+}
+
+.btn-del-danger {
+    border: 1px solid #ff3860 !important;
+    background: transparent !important;
+    color: #ff3860 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+}
+
+.btn-del-danger:hover {
+    border-color: #ff3860 !important;
+    background: #ff3860 !important;
+    color: var(--button-text) !important;
+}
+
+.modal-content {
+    position: relative !important;
+    z-index: 10001 !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 !important;
+}
+
+.modal-content .box {
+    position: relative;
+    padding: 1.75rem;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface-raised);
+    color: var(--text);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.modal-content .title {
+    color: var(--text) !important;
+}
+
+.modal-content p {
+    color: var(--text-muted);
+}
+
+.modal-content .delete {
+    position: absolute !important;
+    top: 1rem;
+    right: 1rem;
+    margin: 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .modal {
+        padding: 1rem !important;
+    }
+
+    .modal-card {
+        max-height: calc(100vh - 2rem) !important;
+    }
+
+    .modal-card-head {
+        padding: 1rem 1.1rem !important;
+    }
+
+    .modal-card-body {
+        padding: 1.1rem !important;
+    }
+
+    .modal-card-foot {
+        padding: 0.9rem 1.1rem !important;
+        gap: 0.75rem !important;
+    }
+
+    .modal-card-foot .button {
+        flex: 1;
+    }
+}

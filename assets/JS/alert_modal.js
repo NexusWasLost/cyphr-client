@@ -1,4 +1,3 @@
-// --- GLOBAL MODAL DEFINITIONS ---
 const ALERT_HTML = `
     <div class="modal" id="customAlertModal">
         <div class="modal-background"></div>
@@ -7,7 +6,7 @@ const ALERT_HTML = `
                 <button class="delete is-pulled-right" aria-label="close"></button>
                 <h3 class="title is-5" id="alertTitle"></h3>
                 <p id="alertMessage" class="mb-5"></p>
-                <button class="button is-dark btn-save-modal" id="alertOkBtn">Understood</button>
+                <button class="button btn-save-modal" id="alertOkBtn">Understood</button>
             </div>
         </div>
     </div>`;
@@ -16,7 +15,7 @@ const CONFIRM_HTML = `
     <div id="customConfirmModal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
-            <header class="modal-card-head is-danger">
+            <header class="modal-card-head">
                 <p class="modal-card-title" id="confirmTitle"></p>
                 <button class="delete" aria-label="close"></button>
             </header>
@@ -24,24 +23,30 @@ const CONFIRM_HTML = `
                 <p id="confirmMessage"></p>
             </section>
             <footer class="modal-card-foot is-justify-content-end">
-                <button class="button is-light mr-2" id="confirmNoBtn">Cancel</button>
-                <button class="button is-dark btn-save-modal" id="confirmYesBtn">Yes, Delete</button>
+                <button class="button btn-edit-cancel" id="confirmNoBtn">Cancel</button>
+                <button class="button btn-del-danger" id="confirmYesBtn">Yes, Delete</button>
             </footer>
         </div>
     </div>`;
 
-// --- AUTO-INJECTION ON LOAD ---
-if (document.querySelector("#customAlertModal") === null) {
-    const container = document.createElement("div");
-    container.id = "global-ui-container";
-    container.innerHTML = ALERT_HTML + CONFIRM_HTML;
-    document.body.appendChild(container);
+function injectModalDOM() {
+    if (!document.querySelector("#customAlertModal")) {
+        const container = document.createElement("div");
+        container.id = "global-ui-container";
+        container.innerHTML = ALERT_HTML + CONFIRM_HTML;
+        document.body.appendChild(container);
+    }
 }
 
-// --- LOGIC FUNCTIONS ---
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", injectModalDOM);
+} else {
+    injectModalDOM();
+}
 
 export function showAlert(title, message) {
     return new Promise(function (resolve) {
+        injectModalDOM();
         const modal = document.querySelector("#customAlertModal");
 
         document.querySelector("#alertTitle").textContent = title;
@@ -69,6 +74,7 @@ export function showAlert(title, message) {
 
 export function showConfirm(title, message) {
     return new Promise(function (resolve) {
+        injectModalDOM();
         const modal = document.querySelector("#customConfirmModal");
 
         document.querySelector("#confirmTitle").textContent = title;

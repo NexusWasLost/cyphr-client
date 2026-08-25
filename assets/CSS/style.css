@@ -162,16 +162,16 @@
   border-bottom: 0;
 }
 
-.key-icon {
+.key-index {
   display: grid;
   place-items: center;
   width: 2.35rem;
   height: 2.35rem;
   flex-shrink: 0;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: var(--surface-raised);
-  color: var(--text-muted);
+  color: var(--text-dim);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .key>div {

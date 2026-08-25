@@ -363,7 +363,7 @@ select:focus {
 
   .footer-main,
   .footer-meta {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
     gap: 1rem;
   }

@@ -31,12 +31,19 @@ async function init() {
     setupEditModal(keysTableBody, token);
 }
 
-function createKeyRow(data) {
+function createKeyRow(data, index) {
     const row = document.createElement("tr");
     row.setAttribute("data-id", data.key_id);
     row.classList.add("key-row"); //used for counting total keys
+    const rowNumber = String(index + 1).padStart(2, "0");
+
     row.innerHTML = `
-        <td class="is-vcentered">${data.service_name} - ${data.key_name}</td>
+        <td class="is-vcentered">
+            <div class="key-name-cell">
+                <span class="key-index">${rowNumber}.</span>
+                <span>${data.service_name} - ${data.key_name}</span>
+            </div>
+        </td>
         <td class="is-vcentered"><code>...${data.key_hint}</code></td>
         <td class="has-text-right">
             <div class="buttons is-right">
@@ -105,7 +112,7 @@ async function fetchKeys(token, keysTableBody) {
         keysTableBody.innerHTML = "";
 
         for (let x = 0; x < keys.length; x++) {
-            const row = createKeyRow(keys[x]);
+            const row = createKeyRow(keys[x], x);
             keysTableBody.appendChild(row);
         }
 
@@ -173,7 +180,10 @@ function setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token) {
             const placeholder = keysTableBody.querySelector("td[colspan]");
             if (placeholder) keysTableBody.innerHTML = "";
 
-            const row = createKeyRow(result.data);
+            //for counting
+            const existingCount = keysTableBody.querySelectorAll(".key-row").length;
+
+            const row = createKeyRow(result.data, existingCount);
             keysTableBody.appendChild(row);
 
             document.querySelector("#serviceName").value = "";

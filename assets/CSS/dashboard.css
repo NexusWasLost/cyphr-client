@@ -175,6 +175,21 @@
     font-weight: 600;
 }
 
+.key-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.key-index {
+    flex-shrink: 0;
+    color: var(--text-dim);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding-top: 2px;
+}
+
 .table td:nth-child(2) {
     color: var(--text-muted);
 }

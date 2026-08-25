@@ -28,14 +28,7 @@
 }
 
 .login-heading>span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
     margin-bottom: 1.5rem;
-    color: var(--text-muted);
-    font: 0.7rem "JetBrains Mono", monospace;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
 }
 
 .login-heading h1 {

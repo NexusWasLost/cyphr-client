@@ -13,6 +13,7 @@
   --text-muted: #8b919e;
   --text-dim: #626875;
   --success: #48d597;
+  --surface-hover: #1f242d;
   --button-bg: var(--primary-accent-color);
   --button-text: #08090b;
   --button-hover: var(--primary-accent-hover);
@@ -155,6 +156,18 @@ select:focus {
   display: none;
 }
 
+/* page eyebrows */
+.label-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font: 0.7rem "JetBrains Mono", monospace;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* footer */
 .site-footer {
   padding: 1.9rem 1rem;
   border-top: 1px solid var(--border-soft);

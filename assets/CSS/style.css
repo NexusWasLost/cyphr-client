@@ -4,14 +4,7 @@
 
 .eyebrow,
 .section-heading>span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   margin-bottom: 1.5rem;
-  color: var(--text-muted);
-  font: 0.7rem "JetBrains Mono", monospace;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
 }
 
 .eyebrow i {
@@ -42,7 +35,7 @@
   line-height: 1.7;
 }
 
-.primary-button {
+.hero-primary-button {
   height: 3.2rem !important;
   padding: 0 1.35rem !important;
   border-radius: 8px !important;
@@ -50,7 +43,7 @@
   font-weight: 700 !important;
 }
 
-.primary-button i,
+.hero-primary-button i,
 .text-button i {
   margin-left: 0.45rem;
 }

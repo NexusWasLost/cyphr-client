@@ -112,3 +112,12 @@ export function showConfirm(title, message) {
         modal.classList.add("is-active");
     });
 }
+
+export function setupModalClose(modal, closeElements) {
+    closeElements.forEach(function (element) {
+        element.addEventListener("click", function (e) {
+            e.preventDefault();
+            modal.classList.remove("is-active");
+        });
+    });
+}

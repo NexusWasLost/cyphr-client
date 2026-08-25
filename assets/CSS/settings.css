@@ -86,8 +86,7 @@
     font-size: .78rem;
 }
 
-.settings-button,
-.danger-btn {
+.settings-btn-base {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -102,13 +101,13 @@
 }
 
 .settings-button {
-    background: var(--surface-hover, #1f242d);
+    background: var(--surface-hover);
     border: 1px solid var(--border);
     color: var(--text);
 }
 
 .settings-button:hover {
-    background: var(--border-soft, #2e3545);
+    background: var(--border-soft);
     color: var(--text);
 }
 

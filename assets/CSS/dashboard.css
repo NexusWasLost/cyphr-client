@@ -98,7 +98,7 @@
     margin: 0.25rem 0 0;
 }
 
-.primary-button {
+.dash-primary-button {
     height: 2.5rem !important;
     padding: 0 1rem !important;
     border-radius: 7px !important;
@@ -106,7 +106,7 @@
     font-weight: 600;
 }
 
-.primary-button .icon {
+.dash-primary-button .icon {
     margin-right: 0.25rem;
 }
 

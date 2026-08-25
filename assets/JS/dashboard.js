@@ -1,5 +1,5 @@
 import { getSession, hasAuthExpired, baseURL } from "./script.js";
-import { showAlert, showConfirm } from "./alert_modal.js";
+import { showAlert, showConfirm, setupModalClose } from "./alert_modal.js";
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -124,12 +124,7 @@ function setupModal(openModalBtn, addKeyModal, closeModalElements) {
         });
     }
 
-    for (let x = 0; x < closeModalElements.length; x++) {
-        closeModalElements[x].addEventListener("click", function (e) {
-            e.preventDefault();
-            addKeyModal.classList.remove("is-active");
-        });
-    }
+    setupModalClose(addKeyModal, closeModalElements);
 }
 
 function setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token) {
@@ -340,23 +335,14 @@ function setupEditModal(keysTableBody, token) {
         editKeyModal.classList.add("is-active");
     });
 
-    editServiceName.addEventListener("input", function () {
-        if (editServiceName.value !== originalService || editKeyLabel.value !== originalLabel) {
+    //nested function for callback on editServiceName and editKeyLabel
+    function checkEditFormChanged() {
+        if (editServiceName.value !== originalService || editKeyLabel.value !== originalLabel)
             updateKeyBtn.disabled = false;
-        }
-        else {
-            updateKeyBtn.disabled = true;
-        }
-    });
-
-    editKeyLabel.addEventListener("input", function () {
-        if (editServiceName.value !== originalService || editKeyLabel.value !== originalLabel) {
-            updateKeyBtn.disabled = false;
-        }
-        else {
-            updateKeyBtn.disabled = true;
-        }
-    });
+        else updateKeyBtn.disabled = true;
+    }
+    editServiceName.addEventListener("input", checkEditFormChanged);
+    editKeyLabel.addEventListener("input", checkEditFormChanged);
 
     updateKeyBtn.addEventListener("click", async function (e) {
         e.preventDefault();
@@ -374,16 +360,10 @@ function setupEditModal(keysTableBody, token) {
         if (!success) return;
 
         row.children[0].innerText = newServiceName + " - " + newAPIKeyName;
-
         editKeyModal.classList.remove("is-active");
     });
 
-    for (let x = 0; x < closeElements.length; x++) {
-        closeElements[x].addEventListener("click", function (e) {
-            e.preventDefault();
-            editKeyModal.classList.remove("is-active");
-        });
-    }
+    setupModalClose(editKeyModal, closeElements);
 }
 
 function setUserAvatar(avatarURL) {

@@ -331,7 +331,7 @@ function setupEditModal(keysTableBody, token) {
         if (!e.target.classList.contains("btn-edit")) return;
         const row = e.target.closest("tr");
         const keyId = row.getAttribute("data-id");
-        const serviceText = row.children[0].innerText;
+        const serviceText = row.querySelector(".key-name-cell span:last-child").innerText;
         const parts = serviceText.split(" - ");
 
         originalService = parts[0];
@@ -366,10 +366,9 @@ function setupEditModal(keysTableBody, token) {
         const newAPIKeyName = editKeyLabel.value;
 
         const success = await updateKey(activeId, token, newServiceName, newAPIKeyName);
-
         if (!success) return;
 
-        row.children[0].innerText = newServiceName + " - " + newAPIKeyName;
+        row.querySelector(".key-name-cell span:last-child").innerText = newServiceName + " - " + newAPIKeyName;
         editKeyModal.classList.remove("is-active");
     });
 

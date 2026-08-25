@@ -164,6 +164,10 @@
     background: var(--surface-raised);
 }
 
+.table tbody tr:hover .buttons .button {
+    border-color: var(--text-dim) !important;
+}
+
 .table td {
     padding: 1.5rem 0.9rem;
     border: 0;

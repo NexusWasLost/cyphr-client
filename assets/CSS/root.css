@@ -2,8 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap");
 
 :root {
-  --primary-accent-color: #FFB000;
-  --primary-accent-hover: #FFC229;
+  --primary-accent-color: #8C9EFF;
+  --primary-accent-hover: #A3B2FF;
   --background: #08090b;
   --surface: #0d0f13;
   --surface-raised: #11141a;

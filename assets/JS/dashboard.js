@@ -165,17 +165,21 @@ function setupSaveKey(saveKeyBtn, addKeyModal, keysTableBody, token) {
 
             if(await hasAuthExpired(response.status)) return;
 
+            const result = await response.json();
+
             //check status of 402 (limit reached)
             if(response.status === 402){
                 await showAlert("Limit of 15 keys reached !");
+                return;
+            }
+            else if(response.status === 400){
+                await showAlert(result.message);
                 return;
             }
             if (!response.ok) {
                 await showAlert("Server refused request");
                 return;
             }
-
-            const result = await response.json();
 
             const placeholder = keysTableBody.querySelector("td[colspan]");
             if (placeholder) keysTableBody.innerHTML = "";

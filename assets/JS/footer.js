@@ -5,11 +5,11 @@ const FOOTER_HTML = `
                 <div><strong>CYPHR</strong><span>Simple API key storage.</span></div>
                 <div class="tech-stack">
                     <span>Built with</span>
-                    <i class="ri-nodejs-fill" title="Node.js"></i>
-                    <i class="devicon-cloudflare-plain colored" title="Cloudflare"></i>
-                    <img src="https://hono.dev/images/logo.png" class="tech-stack-img" alt="Hono" title="Hono">
-                    <i class="devicon-supabase-plain colored" title="Supabase"></i>
-                    <img src="https://neon.tech/brand/neon-logomark-dark-color.svg" class="tech-stack-img" alt="Neon" title="Neon">
+                    <a href="https://nodejs.org/en" target="_blank"><i class="ri-nodejs-fill" title="Node.js"></i></a>
+                    <a href="https://www.cloudflare.com/products/workers/" target="_blank"><i class="devicon-cloudflare-plain colored" title="Cloudflare"></i></a>
+                    <a href="https://hono.dev/" target="_blank"><img src="https://hono.dev/images/logo.png" class="tech-stack-img" alt="Hono" title="Hono"></a>
+                    <a href="https://supabase.com/auth" target="_blank"><i class="devicon-supabase-plain colored" title="Supabase"></i></a>
+                    <a href="https://neon.com/" target="_blank"><img src="https://neon.tech/brand/neon-logomark-dark-color.svg" class="tech-stack-img" alt="Neon" title="Neon"></a>
                 </div>
             </div>
             <div class="footer-meta">

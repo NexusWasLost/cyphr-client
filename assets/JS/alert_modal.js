@@ -1,13 +1,17 @@
 const ALERT_HTML = `
     <div class="modal" id="customAlertModal">
         <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box has-text-centered">
-                <button class="delete is-pulled-right" aria-label="close"></button>
-                <h3 class="title is-5" id="alertTitle"></h3>
-                <p id="alertMessage" class="mb-5"></p>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Alert</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <p id="alertMessage"></p>
+            </section>
+            <footer class="modal-card-foot is-justify-content-flex-end">
                 <button class="button btn-save-modal" id="alertOkBtn">Understood</button>
-            </div>
+            </footer>
         </div>
     </div>`;
 
@@ -44,12 +48,11 @@ if (document.readyState === "loading") {
     injectModalDOM();
 }
 
-export function showAlert(title, message) {
+export function showAlert(message) {
     return new Promise(function (resolve) {
         injectModalDOM();
         const modal = document.querySelector("#customAlertModal");
 
-        document.querySelector("#alertTitle").textContent = title;
         document.querySelector("#alertMessage").textContent = message;
 
         const okBtn = document.querySelector("#alertOkBtn");

@@ -317,7 +317,7 @@ select:focus {
   }
 
   #nav-toggle:checked~.navbar-menu {
-    max-height: 220px;
+    max-height: 250px;
     padding: 0.5rem 0 0.75rem;
     opacity: 1;
   }

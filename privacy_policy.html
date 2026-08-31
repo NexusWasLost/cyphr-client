@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./assets/images/favicon/site.webmanifest">
+    <title>Privacy Policy — CYPHR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="./assets/CSS/root.css">
+    <link rel="stylesheet" href="./assets/CSS/privacy_policy.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container is-max-desktop">
+                <a id="brand-name" class="navbar-item" href="/">CYPHR</a>
+                <input type="checkbox" id="nav-toggle">
+                <label for="nav-toggle" class="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </label>
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item nav-link" href="/">Home</a>
+                        <a class="navbar-item nav-link" href="dashboard.html">My Keys</a>
+                        <a class="navbar-item nav-link" href="pricing.html">Pricing</a>
+                        <a class="navbar-item nav-link" href="https://github.com/7cyphr" target="_blank">GitHub</a>
+                        <a href="login.html" class="nav-link nav-button">Login</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section privacy-section">
+            <div class="container is-max-desktop">
+                <div class="privacy-header">
+                    <span class="label-eyebrow">CYPHR</span>
+                    <h1>Privacy Policy</h1>
+                    <p class="privacy-updated">Last updated: August 31, 2026</p>
+                </div>
+                <div class="privacy-content">
+                    <p>This Privacy Policy explains what information CYPHR collects, how it is used, and how it is
+                        stored when you use the service.</p>
+
+                    <h2>Information Stored</h2>
+                    <h3>Authentication Information</h3>
+                    <p>CYPHR currently uses GitHub OAuth through <a class="privacy-policy-link"
+                            href="https://supabase.com/auth" target="_blank">Supabase Auth <i
+                                class="ri-external-link-line"></i></a> for authentication.
+                        When you sign in, GitHub provides your name, email address, and profile picture. Supabase also
+                        maintains information associated with your account, including your account creation time, last
+                        sign-in time, and authentication provider.</p>
+
+                    <h3>CYPHR Account Information</h3>
+                    <p>CYPHR maintains a user profile associated with your Supabase account. This profile currently
+                        stores your user ID and email address.</p>
+
+                    <h3>API Keys</h3>
+                    <p>When you add an API key to CYPHR, the server receives the key and extracts its last four
+                        characters to create a key hint. The full API key is then encrypted using AES-256-GCM before
+                        being stored.</p>
+                    <p>An API key record contains the associated user ID, key ID, key name, encrypted key, key hint,
+                        service name, and creation timestamp.</p>
+
+                    <h2>How API Keys Are Handled</h2>
+                    <p>CYPHR does not store plaintext API keys in its database. When you request an API key, the server
+                        retrieves the encrypted value, decrypts it in memory, and returns the plaintext key to your
+                        client.</p>
+                    <p>Responses containing API keys are sent with the <code>Cache-Control: no-store</code> directive.
+                        The client immediately copies the returned key to your clipboard. CYPHR does not log or
+                        otherwise persist the plaintext API key.</p>
+
+                    <h2>Temporary Caching</h2>
+                    <p>CYPHR uses <a class="privacy-policy-link" href="https://www.cloudflare.com/products/kv/"
+                            target="_blank">Cloudflare KV <i class="ri-external-link-line"></i></a> for temporary
+                        caching. User API key data may be cached for up to 24
+                        hours (86,400 seconds). This cached data contains the encrypted API key records, never plaintext
+                        API keys.</p>
+                    <p>CYPHR also temporarily caches the JWKS used to verify authentication tokens. JWKS data is
+                        cached for up to 10 minutes (600 seconds) in Cloudflare KV and may also be temporarily held in
+                        <a class="privacy-policy-link" href="https://www.cloudflare.com/products/workers/"
+                            target="_blank">Cloudflare Worker <i class="ri-external-link-line"></i></a> memory.
+                    </p>
+
+                    <h2>Third-Party Services</h2>
+                    <p>CYPHR uses third-party infrastructure to provide and operate the service. These services
+                        currently include:</p>
+                    <ul>
+                        <li>Supabase for authentication and GitHub OAuth.
+                            <a class="privacy-policy-li-link" href="https://supabase.com/auth" target="_blank"><i
+                                    class="ri-external-link-line"></i></a>
+                        </li>
+
+                        <li>Neon for PostgreSQL database hosting.
+                            <a class="privacy-policy-li-link" href="https://neon.com/" target="_blank"><i
+                                    class="ri-external-link-line"></i></a>
+                        </li>
+
+                        <li>Cloudflare Pages for client side hosting.
+                            <a class="privacy-policy-li-link" href="https://www.cloudflare.com/products/pages/"
+                                target="_blank"><i class="ri-external-link-line"></i></a>
+                        </li>
+
+                        <li>Cloudflare Workers for server side hosting and API processing.
+                            <a class="privacy-policy-li-link" href="https://www.cloudflare.com/products/workers/"
+                                target="_blank"><i class="ri-external-link-line"></i></a>
+                        </li>
+
+                        <li>Cloudflare KV for temporary caching.
+                            <a class="privacy-policy-li-link" href="https://www.cloudflare.com/products/kv/"
+                                target="_blank"><i class="ri-external-link-line"></i></a>
+                        </li>
+
+                        <li>Cloudflare Web Analytics for website analytics.
+                            <a class="privacy-policy-li-link" href="https://www.cloudflare.com/en-in/web-analytics/"
+                                target="_blank"><i class="ri-external-link-line"></i></a>
+                        </li>
+                    </ul>
+
+                    <h2>Account Deletion</h2>
+                    <p>CYPHR does not use soft deletion for user accounts. When an account deletion request is made,
+                        CYPHR first requests deletion of the associated account from Supabase Auth.</p>
+                    <p>If the Supabase deletion succeeds, CYPHR deletes the corresponding user record from its database.
+                        Associated API key records are deleted through the database's cascading deletion rules. CYPHR
+                        also initiates deletion of any cached API key data associated with the account.</p>
+
+                    <h2>Data Security</h2>
+                    <p>CYPHR is designed to minimize exposure of stored API keys. API keys are encrypted using
+                        AES-256-GCM before being persisted, and plaintext API keys are not stored in Cloudflare KV.
+                        CYPHR does not yet support full End-to-End Encryption, API keys are decrypted
+                        server-side only on demand and are never stored, logged, or cached.</p>
+                    <p>CYPHR is open source, allowing its implementation to be inspected publicly.</p>
+
+                    <h2>Questions and Concerns</h2>
+                    <p>If you have any questions or concerns about this Privacy Policy or any issue regarding CYPHR,
+                        please <a class="privacy-policy-link" href="https://github.com/7Cyphr/cyphr-support/issues"
+                            target="_blank">raise an issue
+                            <i class="ri-external-link-line"></i></a> in the CYPHR repository.</p>
+                    <p>Please do not include API keys, credentials, or other sensitive information in public issues.</p>
+
+                    <h2>Changes to This Policy</h2>
+                    <p>This Privacy Policy may be updated as CYPHR's features, infrastructure, or data practices change.
+                        Any changes will be reflected on this page along with an updated revision date.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="./assets/JS/footer.js" type="module" defer></script>
+
+</body>
+
+</html>

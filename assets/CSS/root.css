@@ -173,6 +173,13 @@ select:focus {
   border-top: 1px solid var(--border-soft);
 }
 
+.outro {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-privay-policy a:hover { color: var(--primary-accent-color); }
+
 .footer-main,
 .footer-meta {
   display: flex;
@@ -359,6 +366,11 @@ select:focus {
   .navbar-end .nav-link:hover {
     color: var(--text) !important;
     background-color: transparent !important;
+  }
+
+  .outro {
+    padding-bottom: 8px;
+    line-height: 35px;
   }
 
   .footer-main,

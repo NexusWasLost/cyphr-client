@@ -2,7 +2,10 @@ const FOOTER_HTML = `
     <footer class="site-footer">
         <div class="container is-max-desktop">
             <div class="footer-main">
-                <div><strong>CYPHR</strong><span>Simple API key storage.</span></div>
+                <div class="outro">
+                    <strong>CYPHR</strong><span>Simple API key storage.</span>
+                    <span class="footer-privay-policy"><a href="privacy_policy.html">Privacy Policy <i class="ri-external-link-line"></i></a></span>
+                </div>
                 <div class="tech-stack">
                     <span>Built with</span>
                     <a href="https://nodejs.org/en" target="_blank"><i class="ri-nodejs-fill" title="Node.js"></i></a>

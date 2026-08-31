@@ -90,9 +90,13 @@
 .terms {
     margin-top: 1.5rem;
     color: var(--text-dim);
-    font: 0.65rem "JetBrains Mono", monospace;
+    font: 0.75rem "JetBrains Mono", monospace;
     line-height: 1.7;
     text-align: center;
+}
+
+.privacy-policy-acceptance:hover{
+    color: var(--primary-accent-color);
 }
 
 @media (max-width: 768px) {

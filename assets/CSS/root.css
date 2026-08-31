@@ -373,6 +373,11 @@ select:focus {
     line-height: 35px;
   }
 
+  .footer-privay-policy{
+    width: 100%;
+    text-align: center;
+  }
+
   .footer-main,
   .footer-meta {
     align-items: center;

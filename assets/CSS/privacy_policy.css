@@ -16,14 +16,18 @@
     letter-spacing: -0.04em;
 }
 
-.privacy-policy-link, .privacy-policy-li-link {
+.privacy-policy-link,
+.privacy-policy-li-link {
     text-decoration: underline;
     color: var(--primary-accent-color);
 }
 
-.privacy-policy-li-link{ text-decoration: none; }
+.privacy-policy-li-link {
+    text-decoration: none;
+}
 
-.privacy-policy-link:hover, .privacy-policy-li-link:hover {
+.privacy-policy-link:hover,
+.privacy-policy-li-link:hover {
     color: var(--primary-accent-hover);
 }
 
@@ -83,9 +87,12 @@
     font-size: 0.8rem;
 }
 
+/* You already are in the privacy policy page */
+.footer-privay-policy { display: none; }
+
 @media (max-width: 768px) {
     .privacy-section {
-        padding-top: 3rem;
+        padding-top: 2rem;
         padding-bottom: 4rem;
     }
 
@@ -99,5 +106,9 @@
 
     .privacy-content h2 {
         margin-top: 2.25rem;
+    }
+
+    .privacy-content {
+        text-align: left;
     }
 }
